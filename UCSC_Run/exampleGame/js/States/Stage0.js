@@ -29,20 +29,11 @@ Play.prototype = {
 
 
 	    //Create a player and its settings
-		this.player = game.add.sprite(32, 0, 'dude');
-
-		//Physics of player
-		game.physics.arcade.enable(this.player);
-		this.player.body.bounce.y = 0.2;
-		this.player.body.gravity.y = 350;
-		this.player.body.collideWorldBounds = true;
-
-		//Player's left and right animation
-		this.player.animations.add('left', [0, 1, 2, 3], 10, true);
-		this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+		this.player = new Player(game, 100, 700, 'dude', 1,this.wallLayer);
+		game.add.existing(this.player);
 
 		//Set camera for the game
-		game.camera.follow(this.player);
+		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
 		//Create the enemy and its settings
 		baddies = game.add.group();
@@ -106,34 +97,6 @@ Play.prototype = {
 	},
 
 	update: function() {
-		//Check the physics between player and platform
-		game.physics.arcade.collide(this.player, this.wallLayer);
-
-
-		//Reset the players velocity (movement)
-		this.player.body.velocity.x = 0;
-
-		if(cursors.left.isDown){
-
-			//Move to left
-			this.player.body.velocity.x = -150;
-			this.player.animations.play('left');
-		}else if(cursors.right.isDown){
-
-			//Move to right
-			this.player.body.velocity.x = 150;
-			this.player.animations.play('right');
-		}else{
-
-			//Stand Still
-			this.player.animations.stop();
-			this.player.frame = 4;
-		}
-
-		//Allow the player to jump if they are on the ground
-		if(cursors.up.isDown && this.player.body.blocked.down){
-			this.player.body.velocity.y = -350;
-		}
 
 		//Set a win condition to the game
 		if(score == 150){

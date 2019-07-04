@@ -4,7 +4,7 @@ var baddie1;
 var baddie2;
 var music;
 window.onload = function() {
-	game = new Phaser.Game(400, 600, Phaser.AUTO,);
+	game = new Phaser.Game(800, 600, Phaser.AUTO,);
 	game.state.add('MainMenu', MainMenu);
 	game.state.add('Play', Play);
 	game.state.add('GameOver', GameOver);

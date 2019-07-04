@@ -9,6 +9,8 @@ MainMenu.prototype = {
 		game.load.image('snowFlake', 'assets/img/snowflake.png');
 		game.load.spritesheet('dude', 'assets/img/dude.png',32,48);
 		game.load.spritesheet('baddie', 'assets/img/baddie.png',32,32);
+		game.load.tilemap('stage0', 'assets/TileMap/stage0.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.image('tile', 'assets/img/TileSet.png');
 		game.load.audio('pop', 'assets/audio/pop.ogg');
 		game.stage.backgroundColor = "#facade";
 

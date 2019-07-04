@@ -13,53 +13,36 @@ Play.prototype = {
 		//This line enable the Arcade Physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
+		//Set the tilemap of the game
+		game.stage.setBackgroundColor('#87CEEB');
+		this.map = game.add.tilemap('stage0');
+		this.map.addTilesetImage('common', 'tile');
+
+		//New tilemaplayer object
+		this.groundLayer = this.map.createLayer('BackGround');
+		this.wallLayer = this.map.createLayer('Collision');
+		this.groundLayer.resizeWorld();
+		this.map.setCollisionByExclusion([], true, this.wallLayer);
+
 		//Add the music to game
 		music = game.add.audio('pop');
 
-		//The background of the game
-		game.add.sprite(0, 0,'sky');
-
-		//The platforms group contains the ground and the 2 ledges
-		platforms = game.add.group();
-
-		//Enable physics for any object that belongs to the platform
-		platforms.enableBody = true;
-
-		//Here is the ground
-		var ground = platforms.create(0, game.world.height - 64, 'ground');
-
-		//Scale the ground so that it can fit the width of the game
-		ground.scale.setTo(2, 2);
-
-		//This stops it from falling away when player jump on it;
-		ground.body.immovable = true;
-
-
-		//Create several ledges which players could jump on it
-		var ledge = platforms.create(-200, 350, 'ground');
-		ledge.body.immovable = true;
-
-		var ledge = platforms.create(-280, 100, 'ground');
-		ledge.body.immovable = true;
-
-		var ledge = platforms.create(250, 450, 'ground');
-		ledge.body.immovable = true;
-
-		var ledge = platforms.create(300, 250, 'ground');
-		ledge.body.immovable = true;
 
 	    //Create a player and its settings
-		player = game.add.sprite(32, game.world.height - 150, 'dude');
+		this.player = game.add.sprite(32, 0, 'dude');
 
 		//Physics of player
-		game.physics.arcade.enable(player);
-		player.body.bounce.y = 0.2;
-		player.body.gravity.y = 350;
-		player.body.collideWorldBounds = true;
+		game.physics.arcade.enable(this.player);
+		this.player.body.bounce.y = 0.2;
+		this.player.body.gravity.y = 350;
+		this.player.body.collideWorldBounds = true;
 
 		//Player's left and right animation
-		player.animations.add('left', [0, 1, 2, 3], 10, true);
-		player.animations.add('right', [5, 6, 7, 8], 10, true);
+		this.player.animations.add('left', [0, 1, 2, 3], 10, true);
+		this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+		//Set camera for the game
+		game.camera.follow(this.player);
 
 		//Create the enemy and its settings
 		baddies = game.add.group();
@@ -124,46 +107,32 @@ Play.prototype = {
 
 	update: function() {
 		//Check the physics between player and platform
-		game.physics.arcade.collide(player, platforms);
+		game.physics.arcade.collide(this.player, this.wallLayer);
 
-		//Check the physics between stars and platform
-		game.physics.arcade.collide(stars, platforms);
-
-		//Check the physics between enemy and platform
-		game.physics.arcade.collide(baddies, platforms);
-
-		//Check the overlap status between player and stars
-		game.physics.arcade.overlap(player, stars, collectStar, null, this);
-
-		//Check the overlap status between player and diamond
-		game.physics.arcade.overlap(player, diamonds, collectDiamond, null, this);
-
-		//Check the overlap status between player and baddies
-		game.physics.arcade.overlap(player, baddies, getBaddies, null, this);
 
 		//Reset the players velocity (movement)
-		player.body.velocity.x = 0;
+		this.player.body.velocity.x = 0;
 
 		if(cursors.left.isDown){
 
 			//Move to left
-			player.body.velocity.x = -150;
-			player.animations.play('left');
+			this.player.body.velocity.x = -150;
+			this.player.animations.play('left');
 		}else if(cursors.right.isDown){
 
 			//Move to right
-			player.body.velocity.x = 150;
-			player.animations.play('right');
+			this.player.body.velocity.x = 150;
+			this.player.animations.play('right');
 		}else{
 
 			//Stand Still
-			player.animations.stop();
-			player.frame = 4;
+			this.player.animations.stop();
+			this.player.frame = 4;
 		}
 
 		//Allow the player to jump if they are on the ground
-		if(cursors.up.isDown && player.body.touching.down){
-			player.body.velocity.y = -350;
+		if(cursors.up.isDown && this.player.body.blocked.down){
+			this.player.body.velocity.y = -350;
 		}
 
 		//Set a win condition to the game

@@ -1,12 +1,16 @@
 //Here is the play state, all the update function are implement in this state
 //If player collect all the scores or touch the baddies, jump to Game Over state
+var background;
+var player;
+var lavas;
+
 Play.prototype = {
 	init: function() {
 		score = 0;
 	},
 
 	preload: function() {
-	},
+    },
 
 	create: function() {
 
@@ -17,7 +21,9 @@ Play.prototype = {
 		music = game.add.audio('pop');
 
 		//The background of the game
-		game.add.sprite(0, 0,'sky');
+		//game.add.sprite(0, 0,'brick');
+        background = game.add.tileSprite(0, 0, 512, 512, "brick");
+
 
 		//The platforms group contains the ground and the 2 ledges
 		platforms = game.add.group();
@@ -26,10 +32,10 @@ Play.prototype = {
 		platforms.enableBody = true;
 
 		//Here is the ground
-		var ground = platforms.create(0, game.world.height - 64, 'ground');
+		var ground = platforms.create(0, game.world.height - 20, 'ground');
 
 		//Scale the ground so that it can fit the width of the game
-		ground.scale.setTo(2, 2);
+		// ground.scale.setTo(2, 2);
 
 		//This stops it from falling away when player jump on it;
 		ground.body.immovable = true;
@@ -42,11 +48,19 @@ Play.prototype = {
 		var ledge = platforms.create(-280, 100, 'ground');
 		ledge.body.immovable = true;
 
-		var ledge = platforms.create(250, 450, 'ground');
-		ledge.body.immovable = true;
+		// var ledge = platforms.create(250, 450, 'ground');
+		// ledge.body.immovable = true;
 
-		var ledge = platforms.create(300, 250, 'ground');
-		ledge.body.immovable = true;
+		// var ledge = platforms.create(300, 250, 'ground');
+		// ledge.body.immovable = true;
+
+        lavas = game.add.group();
+        lavas.enableBody = true;
+
+        lava = lavas.create(110, game.world.height - 10, 'lava');
+        lava.body.collideWorldBounds = false;
+        lava.body.immovable = true;
+
 
 	    //Create a player and its settings
 		player = game.add.sprite(32, game.world.height - 150, 'dude');
@@ -57,6 +71,7 @@ Play.prototype = {
 		player.body.gravity.y = 350;
 		player.body.collideWorldBounds = true;
 
+
 		//Player's left and right animation
 		player.animations.add('left', [0, 1, 2, 3], 10, true);
 		player.animations.add('right', [5, 6, 7, 8], 10, true);
@@ -66,21 +81,19 @@ Play.prototype = {
 		baddies.enableBody = true;
 
 		baddie1 = baddies.create(200, 0, 'baddie');
-		baddie2 = baddies.create(125, 0, 'baddie');
+		// baddie2 = baddies.create(125, 0, 'baddie');
 		//Physics of enemies
 		baddie1.body.collideWorldBounds = true;
-		baddie2.body.collideWorldBounds = true;
+		// baddie2.body.collideWorldBounds = true;
 
 		//Baddies' left and right animation
-		baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
-		baddie1.animations.add('left', [0, 1], 10, true);
+		// baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
+	    baddie1.body.gravity.y = 50;
+
+        baddie1.animations.add('left', [0, 1], 10, true);
 		baddie1.animations.add('right', [2, 3], 10, true);
-		baddie2.animations.add('left', [0, 1], 10, true);
-		baddie2.animations.add('right', [2, 3], 10, true);
-		
-		
-
-
+		// baddie2.animations.add('left', [0, 1], 10, true);
+		// baddie2.animations.add('right', [2, 3], 10, true);
 
 		//Stars to be collected by players
 		stars = game.add.group();
@@ -123,6 +136,12 @@ Play.prototype = {
 	},
 
 	update: function() {
+
+        //for looping background
+        background.tilePosition.x += 0.5;
+
+        game.physics.arcade.checkCollision.down = false;
+
 		//Check the physics between player and platform
 		game.physics.arcade.collide(player, platforms);
 
@@ -140,6 +159,11 @@ Play.prototype = {
 
 		//Check the overlap status between player and baddies
 		game.physics.arcade.overlap(player, baddies, getBaddies, null, this);
+
+        // no collide detection for overlap!
+        game.physics.arcade.overlap(player, lavas, inLava, null, this);
+
+
 
 		//Reset the players velocity (movement)
 		player.body.velocity.x = 0;
@@ -174,7 +198,7 @@ Play.prototype = {
 
 		//Play baddies' animation
 		baddie1.animations.play('left');
-		baddie2.animations.play('right');
+		// baddie2.animations.play('right');
 
 
 	}
@@ -182,7 +206,7 @@ Play.prototype = {
 }
 
 function collectStar (player, star) {
-    
+    console.log("Collect star");
     //Remove the star from the screen
     star.kill();
     music.play();
@@ -191,7 +215,7 @@ function collectStar (player, star) {
 
 }
 function collectDiamond(player, diamond){
-
+    console.log("Collect Diamond");
 	//Remove diamond from the screen
 	diamond.kill();
 	score += 50;
@@ -199,10 +223,21 @@ function collectDiamond(player, diamond){
 }
 
 function getBaddies(player, baddies){
-	
+
 	//Remove baddies from the screen
 	baddies.kill();
-	score -= 25;
-	//Lose the game, jump to GameOver state
+
+    score -= 25;
+    if(score<0){
+        score = 0;
+    }
+    //Lose the game, jump to GameOver state
 	game.state.start('GameOver');
+}
+
+function inLava(player, lavas){
+
+    console.log("You are in lava");
+
+    game.state.start('GameOver');
 }

@@ -1,10 +1,14 @@
 var game;
 var scoreText;
 var baddie1;
+
 var baddie2;
+
 var music;
 window.onload = function() {
-	game = new Phaser.Game(400, 600, Phaser.AUTO,);
+    WIDTH = 512
+    HEIGHT = 512
+	game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO,);
 	game.state.add('MainMenu', MainMenu);
 	game.state.add('Play', Play);
 	game.state.add('GameOver', GameOver);

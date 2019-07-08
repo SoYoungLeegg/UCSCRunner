@@ -12,11 +12,13 @@ MainMenu.prototype = {
 		game.load.audio('pop', 'assets/audio/pop.ogg');
 		game.stage.backgroundColor = "#facade";
 
+        game.load.image('brick', 'assets/img/brick.png');
+        game.load.image('lava', 'assets/img/lava.png');
 	},
 	create: function(){
 		//Add a short intro for the game
 		var menuText = game.add.text(16, 16, 'Start Catch Game\nUse Arrow Key To Move\nPress [Space] to Start', {fontSize: '32px', fill: '#000'});
-			
+
 	},
 	update: function(){
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {

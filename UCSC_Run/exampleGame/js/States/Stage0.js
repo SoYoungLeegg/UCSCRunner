@@ -3,6 +3,7 @@
 Play.prototype = {
 	init: function() {
 		score = 0;
+    fallingHeight = 1100;
 	},
 
 	preload: function() {
@@ -27,8 +28,7 @@ Play.prototype = {
 		//Add the music to game
 		music = game.add.audio('pop');
 
-
-	    //Create a player and its settings
+	  //Create a player and its settings
 		this.player = new Player(game, 100, 700, 'dude', 1,this.wallLayer);
 		game.add.existing(this.player);
 
@@ -51,10 +51,6 @@ Play.prototype = {
 		baddie1.animations.add('right', [2, 3], 10, true);
 		baddie2.animations.add('left', [0, 1], 10, true);
 		baddie2.animations.add('right', [2, 3], 10, true);
-		
-		
-
-
 
 		//Stars to be collected by players
 		stars = game.add.group();
@@ -108,13 +104,11 @@ Play.prototype = {
 		baddie1.animations.play('left');
 		baddie2.animations.play('right');
 
-
 	}
 
 }
 
 function collectStar (player, star) {
-    
     //Remove the star from the screen
     star.kill();
     music.play();
@@ -123,7 +117,6 @@ function collectStar (player, star) {
 
 }
 function collectDiamond(player, diamond){
-
 	//Remove diamond from the screen
 	diamond.kill();
 	score += 50;
@@ -131,7 +124,6 @@ function collectDiamond(player, diamond){
 }
 
 function getBaddies(player, baddies){
-	
 	//Remove baddies from the screen
 	baddies.kill();
 	score -= 25;

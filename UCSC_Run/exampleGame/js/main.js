@@ -3,6 +3,7 @@ var scoreText;
 var baddie1;
 var baddie2;
 var music;
+var button;
 window.onload = function() {
 	game = new Phaser.Game(800, 600, Phaser.AUTO,);
 	game.state.add('MainMenu', MainMenu);

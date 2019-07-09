@@ -94,10 +94,7 @@ Play.prototype = {
 		//Create the cursor of the game
 		cursors = game.input.keyboard.createCursorKeys();
 
-		//Create restart button
-		button = game.add.button(0, 0, 'button', actionOnClick, this, 2, 1, 0);
-		button.fixedToCamera = true;
-    	button.cameraOffset.setTo(700, 50);
+		
 	},
 
 	update: function() {
@@ -143,6 +140,3 @@ function getBaddies(player, baddies){
 	game.state.start('GameOver');
 }
 
-function actionOnClick () {
-	game.state.start('Play');
-}

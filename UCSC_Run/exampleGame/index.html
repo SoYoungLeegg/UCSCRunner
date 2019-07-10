@@ -1,6 +1,6 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
 	<meta charset="UTF-8" />
 	<title>[Your Game Title Here]</title>
 	<script type="text/javascript" src="../framework/phaser.min.js"></script>
@@ -13,8 +13,12 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-	<!-- We don't need anything in the <body> -->
-	<!-- Phaser will make the <canvas> element for us 👍 -->
+	<!-- Setting up database using Firebase 👍 -->
+	<!-- Core Firebase JS SDK and Firestore SDK -->
+	<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script> -->
+	<!-- Import javascript file for read/write player data -->
+	<script src="./js/Database/PlayerData.js"></script>
 </body>
 </html>
-

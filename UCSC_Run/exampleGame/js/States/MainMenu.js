@@ -12,8 +12,8 @@ MainMenu.prototype = {
 		game.load.tilemap('stage0', 'assets/TileMap/stage0.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.image('tile', 'assets/img/TileSet.png');
 		game.load.audio('pop', 'assets/audio/pop.ogg');
-		game.load.image('startbutton', 'assets/img/startbutton.png');
-		game.load.image('scorebutton', 'assets/img/scorebutton.png');
+		game.load.image('startbutton', 'assets/img/button/startbutton.png');
+		game.load.image('scorebutton', 'assets/img/button/scorebutton.png');
 		game.stage.backgroundColor = "#facade";
 
 	},

@@ -3,11 +3,14 @@
 var background;
 var player;
 var lavas;
+var baddie1;
+var velocity;
 
 Play.prototype = {
 	init: function() {
 		score = 0;
-	},
+	    velocity = 0;
+    },
 
 	preload: function() {
     },
@@ -16,7 +19,7 @@ Play.prototype = {
 
 		//This line enable the Arcade Physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-
+        
 		//Add the music to game
 		music = game.add.audio('pop');
 
@@ -45,8 +48,8 @@ Play.prototype = {
 		var ledge = platforms.create(-200, 350, 'ground');
 		ledge.body.immovable = true;
 
-		var ledge = platforms.create(-280, 100, 'ground');
-		ledge.body.immovable = true;
+		// var ledge = platforms.create(-280, 100, 'ground');
+		// ledge.body.immovable = true;
 
 		// var ledge = platforms.create(250, 450, 'ground');
 		// ledge.body.immovable = true;
@@ -80,11 +83,9 @@ Play.prototype = {
 		baddies = game.add.group();
 		baddies.enableBody = true;
 
-		baddie1 = baddies.create(200, 0, 'baddie');
-		// baddie2 = baddies.create(125, 0, 'baddie');
+		baddie1 = baddies.create(100, 0, 'baddie');
 		//Physics of enemies
 		baddie1.body.collideWorldBounds = true;
-		// baddie2.body.collideWorldBounds = true;
 
 		//Baddies' left and right animation
 		// baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
@@ -94,6 +95,10 @@ Play.prototype = {
 		baddie1.animations.add('right', [2, 3], 10, true);
 		// baddie2.animations.add('left', [0, 1], 10, true);
 		// baddie2.animations.add('right', [2, 3], 10, true);
+
+        // update velocity every 0.5 seconds
+        // Now just for baddie1, need more abstraction
+        game.time.events.loop(1000 * 0.5, updateVelocity, this);
 
 		//Stars to be collected by players
 		stars = game.add.group();
@@ -122,10 +127,11 @@ Play.prototype = {
 		var diamond = diamonds.create(game.rnd.integerInRange(50,250), game.rnd.integerInRange(130,300), 'diamond');
 
 		//Create the snow in the front end
-		for(var i = 0; i < 100; ++i){
+		// No snow for a while
+        /*for(var i = 0; i < 100; ++i){
 			this.snow = new Snow(game, 'snowFlake', 3, Math.PI);
 			game.add.existing(this.snow);
-		}
+		}*/
 
 		//Score of the game
 		scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
@@ -163,10 +169,10 @@ Play.prototype = {
         // no collide detection for overlap!
         game.physics.arcade.overlap(player, lavas, inLava, null, this);
 
-
-
 		//Reset the players velocity (movement)
 		player.body.velocity.x = 0;
+
+        baddie1.body.velocity.x = velocity;
 
 		if(cursors.left.isDown){
 
@@ -240,4 +246,13 @@ function inLava(player, lavas){
     console.log("You are in lava");
 
     game.state.start('GameOver');
+}
+
+
+function updateVelocity(){
+    if(baddie1.body.velocity.y == 0){
+        velocity = (0.5 - game.rnd.integerInRange(0, 1)) * game.rnd.integerInRange(0, 150);
+    }
+    console.log(baddie1.body.velocity.y);
+    console.log(velocity);
 }

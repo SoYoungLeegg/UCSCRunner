@@ -29,7 +29,7 @@ Play.prototype = {
 		music = game.add.audio('pop');
 
 	  //Create a player and its settings
-		this.player = new Player(game, 100, 700, 'dude', 1,this.wallLayer);
+		this.player = new Player(game, 100, 1450, 'dude', 1,this.wallLayer);
 		game.add.existing(this.player);
 
 		//Set camera for the game

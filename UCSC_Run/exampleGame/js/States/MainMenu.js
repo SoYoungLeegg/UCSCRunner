@@ -13,13 +13,20 @@ MainMenu.prototype = {
 		game.load.tilemap('stage0', 'assets/TileMap/stage0.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.image('tile', 'assets/img/TileSet.png');
 		game.load.audio('pop', 'assets/audio/pop.ogg');
+		game.load.image('startbutton', 'assets/img/button/startbutton.png');
+		game.load.image('scorebutton', 'assets/img/button/scorebutton.png');
 		game.stage.backgroundColor = "#facade";
 
 	},
 	create: function(){
 		//Add a short intro for the game
-		var menuText = game.add.text(16, 16, 'Start Catch Game\nUse Arrow Key To Move\nPress [Space] to Start', {fontSize: '32px', fill: '#000'});
-			
+		/* var menuText = game.add.text(16, 16, 'Start Catch Game\nUse Arrow Key To Move\nPress [Space] to Start', {fontSize: '32px', fill: '#000'}); */
+
+		//Create restart button
+		startButton = game.add.button(325, 400, 'startbutton', actionStartClick, this, 2, 1, 0).scale.setTo(0.5,0.5);
+		scoreButton = game.add.button(325, 450, 'scorebutton', actionScoreClick, this, 2, 1, 0).scale.setTo(0.5,0.5);
+		//button.fixedToCamera = true;
+    	//button.cameraOffset.setTo(300, 100);
 	},
 	update: function(){
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
@@ -27,4 +34,12 @@ MainMenu.prototype = {
 			game.state.start('Play');
 		}
 	}
+}
+
+function actionStartClick () {
+	game.state.start('Play');
+}
+
+function actionScoreClick () {
+	game.state.start('GameOver');
 }

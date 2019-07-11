@@ -14,6 +14,7 @@ window.onload = function() {
 	game.state.add('ScoreBoard', ScoreBoard);
 	game.state.start('MainMenu');
 }
+
 var MainMenu = function(game){};
 var Play = function(game){};
 var GameOver = function(game){};

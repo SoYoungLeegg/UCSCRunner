@@ -12,21 +12,23 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-let database = firebase.firestore();
+let db = firebase.firestore();
 
 
-function savePlayerScore(name, score) {
-    if (name != "") {
-        database.collection("userInfo").add({
-            playerName: name
-            playerScore: score
+function savePlayerScore(playerName, playerScore) {
+    if (playerName != "") {
+        db.collection("userInfo").add({
+            name: playerName,
+            score: playerScore
         })
         .then(function() {
-            console.log("Name: ", name, ", Score: ", score);
+            console.log("Name: ", playerName, ", Score: ", playerScore);
         })
         .catch(function(error) {
-            console.error("Error: ", error);
+            console.error("****Error: ", error);
         });
+    } else {
+        console.log("No player name");
     }
 }
 

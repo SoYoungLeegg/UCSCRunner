@@ -5,7 +5,8 @@ function Player(game, x, y, key, frame,wallLayer) {
 
 	game.physics.enable(this);
 	this.body.bounce.y = 0.2;
-	this.body.gravity.y = 350;
+	this.body.gravity.y = 1000;
+	this.body.setSize(20,35,5,10);
 	this.body.collideWorldBounds = true;
 
 	//Player's left and right animation
@@ -17,6 +18,7 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
 Player.prototype.update = function(){
+	game.debug.body(this);
 
 	//Check the physics between player and platform
 	game.physics.arcade.collide(this, this.wallLayer);
@@ -28,12 +30,12 @@ Player.prototype.update = function(){
 	if(cursors.left.isDown){
 
 		//Move to left
-		this.body.velocity.x = -150;
+		this.body.velocity.x = -200;
 		this.animations.play('left');
 	}else if(cursors.right.isDown){
 
 		//Move to right
-		this.body.velocity.x = 150;
+		this.body.velocity.x = 200;
 		this.animations.play('right');
 	}else{
 
@@ -44,7 +46,7 @@ Player.prototype.update = function(){
 
 	//Allow the player to jump if they are on the ground
 	if(cursors.up.isDown && this.body.blocked.down){
-		this.body.velocity.y = -350;
+		this.body.velocity.y = -550;
 	}
 
 	//Set a win condition to the game
@@ -52,4 +54,5 @@ Player.prototype.update = function(){
 		//After collect all stars, jump to game over state
 		game.state.start('GameOver');
 	}
+	console.log(this.body.x,this.body.y);
 }

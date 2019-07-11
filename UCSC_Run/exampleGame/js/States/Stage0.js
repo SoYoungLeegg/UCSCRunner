@@ -35,58 +35,70 @@ Play.prototype = {
 		//Set camera for the game
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-		//Create the enemy and its settings
-		baddies = game.add.group();
-		baddies.enableBody = true;
+		//Set score for the game
+		this.scoreText = game.add.text(16, 16, 'Score: 0');
+		this.scoreText.fixedToCamera = true;
+		this.scoreText.cameraOffset.setTo(15,15);
+		this.scoreText.fill = '#ffffff';
+		this.scoreText.setShadow(3, 3, 'rgba(1,1,0.8,0.3)', 5);
 
-		baddie1 = baddies.create(200, 0, 'baddie');
-		baddie2 = baddies.create(125, 0, 'baddie');
-		//Physics of enemies
-		baddie1.body.collideWorldBounds = true;
-		baddie2.body.collideWorldBounds = true;
+		//Set some background structure
+		this.busStop = game.add.sprite(180, 1560, 'busStop');
+		this.busStop.anchor.set(0.5);
+		this.busStop.scale.setTo(0.5,0.5);
 
-		//Baddies' left and right animation
-		baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
-		baddie1.animations.add('left', [0, 1], 10, true);
-		baddie1.animations.add('right', [2, 3], 10, true);
-		baddie2.animations.add('left', [0, 1], 10, true);
-		baddie2.animations.add('right', [2, 3], 10, true);
+		// //Create the enemy and its settings
+		// baddies = game.add.group();
+		// baddies.enableBody = true;
+
+		// baddie1 = baddies.create(200, 0, 'baddie');
+		// baddie2 = baddies.create(125, 0, 'baddie');
+		// //Physics of enemies
+		// baddie1.body.collideWorldBounds = true;
+		// baddie2.body.collideWorldBounds = true;
+
+		// //Baddies' left and right animation
+		// baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
+		// baddie1.animations.add('left', [0, 1], 10, true);
+		// baddie1.animations.add('right', [2, 3], 10, true);
+		// baddie2.animations.add('left', [0, 1], 10, true);
+		// baddie2.animations.add('right', [2, 3], 10, true);
 		
 		
 
 
 
-		//Stars to be collected by players
-		stars = game.add.group();
+		// //Stars to be collected by players
+		// stars = game.add.group();
 
-		//Stars can be touch in the game, so enable body
-		stars.enableBody = true;
+		// //Stars can be touch in the game, so enable body
+		// stars.enableBody = true;
 
-		//Create 12 starts in total
-		for(var i = 0; i < 10; i++){
-			var star = stars.create(i * 40, 0, 'star');
+		// //Create 12 starts in total
+		// for(var i = 0; i < 10; i++){
+		// 	var star = stars.create(i * 40, 0, 'star');
 
-			//Set gravity to each star
-			star.body.gravity.y = 100;
+		// 	//Set gravity to each star
+		// 	star.body.gravity.y = 100;
 
-			//Give a slightly random bounce rate to every star
-			star.body.bounce.y = 0.7 + Math.random() * 0.2;
-		}
+		// 	//Give a slightly random bounce rate to every star
+		// 	star.body.bounce.y = 0.7 + Math.random() * 0.2;
+		// }
 
-		//Diamond to be collected by players
-		diamonds = game.add.group();
+		// //Diamond to be collected by players
+		// diamonds = game.add.group();
 
-		//Diamond can be touch in the game, so enable body
-		diamonds.enableBody = true;
+		// //Diamond can be touch in the game, so enable body
+		// diamonds.enableBody = true;
 
-		//Create a diamond in the air
-		var diamond = diamonds.create(game.rnd.integerInRange(50,250), game.rnd.integerInRange(130,300), 'diamond');
+		// //Create a diamond in the air
+		// var diamond = diamonds.create(game.rnd.integerInRange(50,250), game.rnd.integerInRange(130,300), 'diamond');
 
-		//Create the snow in the front end
-		for(var i = 0; i < 100; ++i){
-			this.snow = new Snow(game, 'snowFlake', 3, Math.PI);
-			game.add.existing(this.snow);
-		}
+		// //Create the snow in the front end
+		// for(var i = 0; i < 100; ++i){
+		// 	this.snow = new Snow(game, 'snowFlake', 3, Math.PI);
+		// 	game.add.existing(this.snow);
+		// }
 
 		//Score of the game
 		scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
@@ -105,8 +117,8 @@ Play.prototype = {
 		}
 
 		//Play baddies' animation
-		baddie1.animations.play('left');
-		baddie2.animations.play('right');
+		// baddie1.animations.play('left');
+		// baddie2.animations.play('right');
 
 
 	}

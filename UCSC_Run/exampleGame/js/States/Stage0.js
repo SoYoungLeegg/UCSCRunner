@@ -172,8 +172,6 @@ Play.prototype = {
 		//Reset the players velocity (movement)
 		player.body.velocity.x = 0;
 
-        baddie1.body.velocity.x = velocity;
-
 		if(cursors.left.isDown){
 
 			//Move to left
@@ -248,11 +246,10 @@ function inLava(player, lavas){
     game.state.start('GameOver');
 }
 
-
 function updateVelocity(){
+    // maintain array of baddies, iterate and update each!
     if(baddie1.body.velocity.y == 0){
-        velocity = (0.5 - game.rnd.integerInRange(0, 1)) * game.rnd.integerInRange(0, 150);
+        baddie1.body.velocity.x = (0.5 - game.rnd.integerInRange(0, 1)) * game.rnd.integerInRange(0, 150);
     }
-    console.log(baddie1.body.velocity.y);
-    console.log(velocity);
+    console.log(baddie1.body.velocity.x, baddie1.body.velocity.y);
 }

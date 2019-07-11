@@ -90,6 +90,7 @@ Play.prototype = {
 		//Create the cursor of the game
 		cursors = game.input.keyboard.createCursorKeys();
 
+		
 	},
 
 	update: function() {
@@ -130,3 +131,4 @@ function getBaddies(player, baddies){
 	//Lose the game, jump to GameOver state
 	game.state.start('GameOver');
 }
+

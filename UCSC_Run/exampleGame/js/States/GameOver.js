@@ -13,11 +13,13 @@ GameOver.prototype = {
 		score = 0;
 		/* should be deleted */
 		/*var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});*/
-		
-		var title = game.add.sprite(280, 100, 'gameover');
+		var tmp = game.cache.getImage('gameover');
+		var title = game.add.sprite(game.world.centerX - tmp.width/2.0, game.world.centerY * 0.3, 'gameover');
 		var text = game.add.text(320, 200, 'Your Score is ' + score);
 		var text2 = game.add.text(320, 260, 'Your name: ' );
-		var submitForm = game.add.sprite(320, 300, 'submitform').scale.setTo(1,1);
+		var tmp2 = game.cache.getImage('submitform');
+		var submitForm = game.add.sprite(game.world.centerX - tmp2.width/2.0, game.world.centerY, 'submitform').scale.setTo(0.7,0.7);
+		
 		var submitButton = game.add.button(325, 350, 'submitbutton', actionSubmitClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
 		var restartButton = game.add.button(325, 400, 'restartbutton', actionRestartClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
 	},

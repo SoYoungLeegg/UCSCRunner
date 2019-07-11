@@ -11,3 +11,23 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+let database = firebase.firestore();
+
+
+function savePlayerScore(name, score) {
+    if (name != "") {
+        database.collection("userInfo").add({
+            playerName: name
+            playerScore: score
+        })
+        .then(function() {
+            console.log("Name: ", name, ", Score: ", score);
+        })
+        .catch(function(error) {
+            console.error("Error: ", error);
+        });
+    }
+}
+
+

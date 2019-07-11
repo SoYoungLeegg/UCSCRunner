@@ -9,9 +9,9 @@ ScoreBoard.prototype = {
 	},
 	create: function(){
 		var tmp = game.cache.getImage('score');
-		var title = game.add.sprite(game.world.centerX - tmp.width/2.0, game.world.centerY * 0.3, 'score');
+		var title = game.add.sprite(260, 100, 'score');
 		var tmp2 = game.cache.getImage('scorecell');
-		var submitForm = game.add.sprite(400 + tmp2.width/2.0, game.world.centerY * 0.7, 'scorecell').scale.setTo(0.5,0.5);
+		var submitForm = game.add.sprite(210, 200, 'scorecell').scale.setTo(0.5,0.5);
 
 		var restartButton = game.add.button(325, 400, 'restartbutton', actionRestartClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
 	},

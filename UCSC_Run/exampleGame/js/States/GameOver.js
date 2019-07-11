@@ -22,7 +22,6 @@ GameOver.prototype = {
 		
 		var submitButton = game.add.button(325, 350, 'submitbutton', actionSubmitClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
 		var restartButton = game.add.button(325, 400, 'restartbutton', actionRestartClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
-	    //savePlayerScore("Jun", score);
 	},
 	update: function(){
 		score = 0;

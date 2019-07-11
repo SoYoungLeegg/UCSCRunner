@@ -12,9 +12,10 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// getting access to database
 let db = firebase.firestore();
 
-
+/* function to save player's name and score */
 function savePlayerScore(playerName, playerScore) {
     if (playerName != "") {
         db.collection("userInfo").add({

@@ -26,21 +26,23 @@ Player.prototype.update = function(){
 	this.body.velocity.x = 0;
 
 	if(cursors.left.isDown){
-
 		//Move to left
 		this.body.velocity.x = -150;
 		this.animations.play('left');
 	}else if(cursors.right.isDown){
-
 		//Move to right
 		this.body.velocity.x = 150;
 		this.animations.play('right');
 	}else{
-
 		//Stand Still
 		this.animations.stop();
 		this.frame = 4;
 	}
+
+  // Game over if falls down the hole
+  if (this.body.y > fallingHeight) {
+    game.state.start('GameOver');
+  }
 
 	//Allow the player to jump if they are on the ground
 	if(cursors.up.isDown && this.body.blocked.down){

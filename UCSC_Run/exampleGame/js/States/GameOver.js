@@ -7,7 +7,8 @@ GameOver.prototype = {
 	},
 	create: function(){
 		var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});
-	},
+	    //savePlayerScore("Jun", score);
+    },
 	update: function(){
 		score = 0;
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {

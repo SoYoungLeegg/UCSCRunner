@@ -33,4 +33,31 @@ function savePlayerScore(playerName, playerScore) {
     }
 }
 
+/* getTopPlayers(N): get N top player's name and score save it to
+ *                   the array 'topPlayers' in promise
+ * */
+function getTopPlayers(N) {
+    var playerData = db.collection("userInfo");
+    let query = playerData.orderBy("score", "desc").limit(N);
+    var topPlayers = [];
+    var i = 0;
+
+    var promise = query.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            topPlayers[i] = doc.data();
+            i = i + 1;
+        });
+        return topPlayers;
+    }).then(function(ret){
+        console.log("===Top Players===\n", ret);
+        return ret;
+    })
+    .catch(function(error) {
+        console.log("Error: failing to get data");
+    });
+
+    return promise;
+}
+
+
 

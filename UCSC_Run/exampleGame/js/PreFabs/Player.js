@@ -8,6 +8,7 @@ function Player(game, x, y, key, frame,wallLayer) {
 	this.body.gravity.y = 1000;
 	this.body.setSize(20,35,5,10);
 	this.body.collideWorldBounds = true;
+	this.jumpCondition = 0;
 
 	//Player's left and right animation
 	this.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -19,6 +20,7 @@ Player.prototype.constructor = Player;
 
 Player.prototype.update = function(){
 	game.debug.body(this);
+	//console.log(this.body.x,this.body.y);
 
 	//Check the physics between player and platform
 	game.physics.arcade.collide(this, this.wallLayer);
@@ -41,14 +43,18 @@ Player.prototype.update = function(){
 		this.frame = 4;
 	}
 
-  // Game over if falls down the hole
-  if (this.body.y > fallingHeight) {
-    game.state.start('GameOver');
-  }
+  	// Game over if falls down the hole
+  	if (this.body.y > fallingHeight) {
+    	game.state.start('GameOver');
+  	}
+  	if(cursors.up.isUp){
+  		this.jumpCondition = 0;
+  	}
 
 	//Allow the player to jump if they are on the ground
-	if(cursors.up.isDown && this.body.blocked.down){
+	if(cursors.up.isDown && this.body.blocked.down && this.jumpCondition == 0){
 		this.body.velocity.y = -550;
+		this.jumpCondition = 1;
 	}
 
 	//Set a win condition to the game

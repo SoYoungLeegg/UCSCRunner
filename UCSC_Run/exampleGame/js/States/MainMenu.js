@@ -12,9 +12,13 @@ MainMenu.prototype = {
 		game.load.spritesheet('baddie', 'assets/img/baddie.png',32,32);
 		game.load.tilemap('stage0', 'assets/TileMap/stage0.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.image('tile', 'assets/img/TileSet.png');
+		game.load.image('dormA', 'assets/img/DormA.png');
 		game.load.audio('pop', 'assets/audio/pop.ogg');
 		game.load.image('startbutton', 'assets/img/button/startbutton.png');
 		game.load.image('scorebutton', 'assets/img/button/scorebutton.png');
+		game.load.image('building', 'assets/img/Building.png');
+		game.load.image('dBuilding', 'assets/img/doubleBuilding.png');
+		game.load.image('squiggle', 'assets/img/Squiggle.png');
 		game.stage.backgroundColor = "#facade";
 
 	},

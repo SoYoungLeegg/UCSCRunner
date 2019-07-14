@@ -3,7 +3,8 @@
 Play.prototype = {
 	init: function() {
 		score = 0;
-    	fallingHeight = 2000;
+    fallingHeight = 2000;
+
 	},
 
 	preload: function() {

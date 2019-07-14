@@ -20,7 +20,7 @@ Player.prototype.constructor = Player;
 
 Player.prototype.update = function(){
 	game.debug.body(this);
-	console.log(this.body.x,this.body.y);
+	//console.log(this.body.x,this.body.y);
 
 	//Check the physics between player and platform
 	game.physics.arcade.collide(this, this.wallLayer);

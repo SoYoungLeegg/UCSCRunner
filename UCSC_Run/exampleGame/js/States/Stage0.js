@@ -4,12 +4,10 @@ var background;
 var player;
 var lavas;
 var baddie1;
-var velocity;
 
 Play.prototype = {
 	init: function() {
 		score = 0;
-	    velocity = 0;
     },
 
 	preload: function() {

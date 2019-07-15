@@ -27,7 +27,6 @@ Baddy.prototype.constructor = Baddy;
 
 Baddy.prototype.update = function(){
 	this.collideCond = 0;
-	game.debug.body(this);
 	//console.log(this.body.x,this.body.y);
 
 	//Check the physics between Baddy and platform
@@ -36,6 +35,11 @@ Baddy.prototype.update = function(){
 	game.physics.arcade.collide(this.player, this, this.checkCollide, null, this);
 
 	game.physics.arcade.overlap(this, this.player, this.killPlayer, null, this);
+	if(this.body.velocity.x > 0){
+		this.animations.play('right');
+	}else{
+		this.animations.play('left');
+	}
 
 
 }

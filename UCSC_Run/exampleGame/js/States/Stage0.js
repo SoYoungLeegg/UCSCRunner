@@ -60,8 +60,9 @@ Play.prototype = {
 
 
 		//Create the enemy and its setting
-		this.baddie1 = new Baddy(game, 150, 1550, 'baddie', 1, this.wallLayer, this.player, this);
-		// this.baddie1.addMovementToPoint();
+		this.baddie1 = new Baddy(game, 200, 1620, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie1.addMovementToPoint();
+
 		game.add.existing(this.baddie1);
 		// //Create the enemy and its settings
 		// baddies = game.add.group();

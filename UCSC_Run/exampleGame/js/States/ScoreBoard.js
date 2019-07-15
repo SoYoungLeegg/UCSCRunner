@@ -6,6 +6,7 @@ ScoreBoard.prototype = {
 		game.load.image('score', 'assets/img/scoretitle.png');
 		game.load.image('scorecell', 'assets/img/scorecell.png');
 		game.load.image('restartbutton', 'assets/img/button/restartbutton.png');
+		
 	},
 	create: function(){
 		

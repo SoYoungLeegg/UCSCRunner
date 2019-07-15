@@ -9,6 +9,7 @@ function Player(game, x, y, key, frame,wallLayer) {
 	this.body.setSize(20,35,5,10);
 	this.body.collideWorldBounds = true;
 	this.jumpCondition = 0;
+	this.score = 0;
 
 	//Player's left and right animation
 	this.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -19,8 +20,7 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
 Player.prototype.update = function(){
-	game.debug.body(this);
-	//console.log(this.body.x,this.body.y);
+	console.log(this.body.x,this.body.y);
 
 	//Check the physics between player and platform
 	game.physics.arcade.collide(this, this.wallLayer);

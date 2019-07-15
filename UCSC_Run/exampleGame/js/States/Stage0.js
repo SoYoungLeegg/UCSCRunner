@@ -30,7 +30,7 @@ Play.prototype = {
 		music = game.add.audio('pop');
 
 	  	//Create a player and its settings
-		this.player = new Player(game, 85, 1450, 'dude', 1,this.wallLayer);
+		this.player = new Player(game, 85, 1450, 'slug', 1,this.wallLayer);
 
 		//Set camera for the game
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -59,7 +59,11 @@ Play.prototype = {
 		this.squiggle.scale.setTo(0.5,0.5);
 
 
+		//Create the enemy and its setting
+		this.baddie1 = new Baddy(game, 200, 1620, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie1.addMovementToPoint();
 
+		game.add.existing(this.baddie1);
 		// //Create the enemy and its settings
 		// baddies = game.add.group();
 		// baddies.enableBody = true;
@@ -135,7 +139,7 @@ Play.prototype = {
 	update: function() {
 
 		//Set a win condition to the game
-		if(score == 150){
+		if(this.realTime <= 0){
 			//After collect all stars, jump to game over state
 			game.state.start('GameOver');
 		}
@@ -148,6 +152,11 @@ Play.prototype = {
 	updateCounter: function(){
 		this.realTime--;
 		this.times.setText('Time: ' + this.realTime);
+	},
+
+	updateScore: function(player,stage){
+		this.scoreText.text = 'Score: ' + player.score;
+		console.log(player.score);
 	}
 
 }
@@ -173,6 +182,11 @@ function getBaddies(player, baddies){
 	score -= 25;
 	//Lose the game, jump to GameOver state
 	game.state.start('GameOver');
+}
+
+function updateScore(player,stage){
+	//Set score for the game
+	stage.scoreText = 'Score: ' + player.score;
 }
 
 

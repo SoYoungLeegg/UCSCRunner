@@ -11,6 +11,8 @@ GameOver.prototype = {
 	create: function(){
 		/* tmp initialize score for debug */
 		score = 0;
+        console.log("Game over");
+        //getTopPlayers(5); // codes for test
 		/* should be deleted */
 		/*var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});*/
 		var tmp = game.cache.getImage('gameover');

@@ -21,6 +21,8 @@ Play.prototype = {
 		//Add the music to game
 		music = game.add.audio('pop');
 
+        background = game.add.tileSprite(0, 0, 512, 512, "brick");
+
 		//The platforms group contains the ground and the 2 ledges
 		platforms = game.add.group();
 
@@ -34,7 +36,6 @@ Play.prototype = {
 
 		//This stops it from falling away when player jump on it;
 		ground.body.immovable = true;
-
 
 		//Create several ledges which players could jump on it
 		var ledge = platforms.create(-200, 350, 'ground');

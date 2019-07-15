@@ -2,8 +2,7 @@
 //If player collect all the scores or touch the baddies, jump to Game Over state
 Play.prototype = {
 	init: function() {
-		score = 0;
-    fallingHeight = 2000;
+    	fallingHeight = 2000;
 
 	},
 
@@ -60,10 +59,41 @@ Play.prototype = {
 
 
 		//Create the enemy and its setting
-		this.baddie1 = new Baddy(game, 200, 1620, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie1 = new Baddy(game, 200, 1600, 'baddie', 1, this.wallLayer, this.player, this);
 		this.baddie1.addMovementToPoint();
 
+		this.baddie2 = new Baddy(game, 1133, 1400, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie2.addMovementToPoint();
+
+		this.baddie3 = new Baddy(game, 1233, 1400, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie3.addMovementToPoint();
+
+		this.baddie4 = new Baddy(game, 2860, 800, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie4.addMovementToPoint();
+
+		this.baddie5 = new Baddy(game, 3060, 800, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie5.addMovementToPoint();
+
+		this.baddie6 = new Baddy(game, 2798, 1195, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie6.addMovementToPoint();
+
+		this.baddie7 = new Baddy(game, 3123, 1340, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie7.addMovementToPoint();
+
+		this.baddie8 = new Baddy(game, 3903, 1490, 'baddie', 1, this.wallLayer, this.player, this);
+		this.baddie8.addMovementToPoint();
+
+
+
+
 		game.add.existing(this.baddie1);
+		game.add.existing(this.baddie2);
+		game.add.existing(this.baddie3);
+		game.add.existing(this.baddie4);
+		game.add.existing(this.baddie5);
+		game.add.existing(this.baddie6);
+		game.add.existing(this.baddie7);
+		game.add.existing(this.baddie8);
 		// //Create the enemy and its settings
 		// baddies = game.add.group();
 		// baddies.enableBody = true;
@@ -137,10 +167,12 @@ Play.prototype = {
 	},
 
 	update: function() {
+		score = this.player.score;
 
 		//Set a win condition to the game
 		if(this.realTime <= 0){
 			//After collect all stars, jump to game over state
+
 			game.state.start('GameOver');
 		}
 

@@ -3,6 +3,7 @@ var scoreText;
 var baddie1;
 var baddie2;
 var music;
+var score;
 var startButton;
 var scoreButton;
 

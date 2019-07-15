@@ -9,6 +9,7 @@ function Player(game, x, y, key, frame,wallLayer) {
 	this.body.setSize(20,35,5,10);
 	this.body.collideWorldBounds = true;
 	this.jumpCondition = 0;
+	this.score = 0;
 
 	//Player's left and right animation
 	this.animations.add('left', [0, 1, 2, 3], 10, true);

@@ -19,14 +19,9 @@ Play.prototype = {
 
 		//This line enable the Arcade Physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-        
+
 		//Add the music to game
 		music = game.add.audio('pop');
-
-		//The background of the game
-		//game.add.sprite(0, 0,'brick');
-        background = game.add.tileSprite(0, 0, 512, 512, "brick");
-
 
 		//The platforms group contains the ground and the 2 ledges
 		platforms = game.add.group();
@@ -36,7 +31,6 @@ Play.prototype = {
 
 		//Here is the ground
 		var ground = platforms.create(0, game.world.height - 20, 'ground');
-
 		//Scale the ground so that it can fit the width of the game
 		// ground.scale.setTo(2, 2);
 
@@ -57,13 +51,6 @@ Play.prototype = {
 		// var ledge = platforms.create(300, 250, 'ground');
 		// ledge.body.immovable = true;
 
-        lavas = game.add.group();
-        lavas.enableBody = true;
-
-        lava = lavas.create(110, game.world.height - 10, 'lava');
-        lava.body.collideWorldBounds = false;
-        lava.body.immovable = true;
-
 
 	    //Create a player and its settings
 		player = game.add.sprite(32, game.world.height - 150, 'dude');
@@ -74,67 +61,61 @@ Play.prototype = {
 		player.body.gravity.y = 350;
 		player.body.collideWorldBounds = true;
 
-
 		//Player's left and right animation
 		player.animations.add('left', [0, 1, 2, 3], 10, true);
 		player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-		//Create the enemy and its settings
+
+
+
+		//Create attributes and its settings
 		baddies = game.add.group();
-		baddies.enableBody = true;
+        //List maintained for Animation Updates
+        var animeBaddieList = [
+            ['left', [0, 1], 10, true],
+            ['right', [2, 3], 10, true]
+        ];
+        baddie1 = addElementToGroup(baddies, 100, 317, 'baddie', animeBaddieList);
+        baddie2 = addElementToGroup(baddies, 200, 457, 'baddie', animeBaddieList);
+        //Enable gravity
+        baddie1.body.gravity.y = 50;
 
-		baddie1 = baddies.create(100, 0, 'baddie');
-		//Physics of enemies
-		baddie1.body.collideWorldBounds = true;
+        //Give attribute periodical movement
+        baddie1DestPointX = baddie1.x + 50;
+        baddie1DestPointY = baddie1.y;
+        baddie1MovePeriod = 1000;
+        //Linear
+        baddie1Easing = Phaser.Easing.Linear.None;
+        addMovementToPoint(baddie1, baddie1DestPointX, baddie1DestPointY, baddie1MovePeriod,
+                baddie1Easing);
+        baddie2MovePeriod = 2000;
+        //Quadratic
+        baddie2Easing = Phaser.Easing.Quadratic.None;
+        addMovementToPoint(baddie2, baddie2.x + 50, baddie2.y - 100, baddie2MovePeriod,
+                baddie2Easing);
 
-		//Baddies' left and right animation
-		// baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
-	    baddie1.body.gravity.y = 50;
+        //Death Condition terrain (lava etc)
+        deaths = game.add.group();
+        death1 = addElementToGroup(deaths, 110, game.world.height - 10, 'lava', null);
+        //Collision allowed for terrain
+        death1.body.collideWorldBounds = false;
 
-        baddie1.animations.add('left', [0, 1], 10, true);
-		baddie1.animations.add('right', [2, 3], 10, true);
-		// baddie2.animations.add('left', [0, 1], 10, true);
-		// baddie2.animations.add('right', [2, 3], 10, true);
+        //pickups
+        stars = game.add.group();
+        star1 = addElementToGroup(stars, 100, 0, 'star');
+        star1.body.collideWorldBounds = false;
+        star1.body.immovable = false;
+		star1.body.gravity.y = 100;
+        //star1.body.bounce.y = 0.7 + Math.random() * 0.2;
+        diamonds = game.add.group();
+        diamond1 = addElementToGroup(diamonds, baddie1.x, baddie1.y, 'diamond');
+        diamond1.body.collideWorldBounds = false;
+        diamond1.body.immovable = false;
 
-        // update velocity every 0.5 seconds
-        // Now just for baddie1, need more abstraction
-        game.time.events.loop(1000 * 0.5, updateVelocity, this);
 
-		//Stars to be collected by players
-		stars = game.add.group();
+        //Score of the game
 
-		//Stars can be touch in the game, so enable body
-		stars.enableBody = true;
-
-		//Create 12 starts in total
-		for(var i = 0; i < 10; i++){
-			var star = stars.create(i * 40, 0, 'star');
-
-			//Set gravity to each star
-			star.body.gravity.y = 100;
-
-			//Give a slightly random bounce rate to every star
-			star.body.bounce.y = 0.7 + Math.random() * 0.2;
-		}
-
-		//Diamond to be collected by players
-		diamonds = game.add.group();
-
-		//Diamond can be touch in the game, so enable body
-		diamonds.enableBody = true;
-
-		//Create a diamond in the air
-		var diamond = diamonds.create(game.rnd.integerInRange(50,250), game.rnd.integerInRange(130,300), 'diamond');
-
-		//Create the snow in the front end
-		// No snow for a while
-        /*for(var i = 0; i < 100; ++i){
-			this.snow = new Snow(game, 'snowFlake', 3, Math.PI);
-			game.add.existing(this.snow);
-		}*/
-
-		//Score of the game
-		scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
+        scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
 
 		//Create the cursor of the game
 		cursors = game.input.keyboard.createCursorKeys();
@@ -167,7 +148,7 @@ Play.prototype = {
 		game.physics.arcade.overlap(player, baddies, getBaddies, null, this);
 
         // no collide detection for overlap!
-        game.physics.arcade.overlap(player, lavas, inLava, null, this);
+        game.physics.arcade.overlap(player, deaths, inDeath, null, this);
 
 		//Reset the players velocity (movement)
 		player.body.velocity.x = 0;
@@ -200,14 +181,41 @@ Play.prototype = {
 			game.state.start('GameOver');
 		}
 
-		//Play baddies' animation
+        //Play baddies' animation
 		baddie1.animations.play('left');
-		// baddie2.animations.play('right');
-
+		baddie2.animations.play('right');
 
 	}
 
 }
+
+function addMovementToPoint(element, pointX, pointY, movePeriod, easingModel) {
+    game.add.tween(element).to( { x: pointX, y:pointY}, movePeriod,
+        easingModel, true, 0, Number.POSITIVE_INFINITY, true);
+}
+
+function addElementToGroup(group, posX, posY, image, animeList) {
+    //Can be touched in the game
+    group.enableBody = true;
+    //Add ememy to group
+    element = group.create(posX, posY, image);
+    //Disable collision with boundary
+    element.body.collideWorldBounds = true;
+    element.body.immovable = true;
+    if(animeList){
+        var animeListLength = animeList.length;
+        for(var i = 0; i < animeListLength; i++) {
+            var name = animeList[i][0];
+            var frames = animeList[i][1];
+            var frameRate = animeList[i][2];
+            var loop = animeList[i][3];
+            // Add animation to element
+            element.animations.add(name, frames, frameRate, loop);
+        }
+    }
+    return element;
+}
+
 
 function collectStar (player, star) {
     console.log("Collect star");
@@ -232,24 +240,17 @@ function getBaddies(player, baddies){
 	baddies.kill();
 
     score -= 25;
-    if(score<0){
+    if(score < 0){
         score = 0;
     }
     //Lose the game, jump to GameOver state
 	game.state.start('GameOver');
 }
 
-function inLava(player, lavas){
+function inDeath(player, deaths){
 
-    console.log("You are in lava");
+    console.log("You are dead");
 
     game.state.start('GameOver');
 }
 
-function updateVelocity(){
-    // maintain array of baddies, iterate and update each!
-    if(baddie1.body.velocity.y == 0){
-        baddie1.body.velocity.x = (0.5 - game.rnd.integerInRange(0, 1)) * game.rnd.integerInRange(0, 150);
-    }
-    console.log(baddie1.body.velocity.x, baddie1.body.velocity.y);
-}

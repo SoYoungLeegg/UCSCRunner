@@ -3,7 +3,8 @@
 Play.prototype = {
 	init: function() {
 		score = 0;
-    fallingHeight = 1800;
+    fallingHeight = 2000;
+
 	},
 
 	preload: function() {
@@ -28,9 +29,8 @@ Play.prototype = {
 		//Add the music to game
 		music = game.add.audio('pop');
 
-	  //Create a player and its settings
-		this.player = new Player(game, 100, 1450, 'dude', 1,this.wallLayer);
-		game.add.existing(this.player);
+	  	//Create a player and its settings
+		this.player = new Player(game, 85, 1450, 'dude', 1,this.wallLayer);
 
 		//Set camera for the game
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -46,6 +46,19 @@ Play.prototype = {
 		this.busStop = game.add.sprite(180, 1560, 'busStop');
 		this.busStop.anchor.set(0.5);
 		this.busStop.scale.setTo(0.5,0.5);
+
+		this.dormA = new Dorm(game, 3010, 1020, 'dormA', 1, this.player);
+		game.add.existing(this.dormA);
+
+		this.dBuilding = game.add.sprite(3940, 1310, 'dBuilding');
+		this.dBuilding.anchor.set(0.5);
+		this.dBuilding.scale.setTo(0.9,0.9);
+
+		this.squiggle = game.add.sprite(1200, 1395, 'squiggle');
+		this.squiggle.anchor.set(0.5);
+		this.squiggle.scale.setTo(0.5,0.5);
+
+
 
 		// //Create the enemy and its settings
 		// baddies = game.add.group();
@@ -100,11 +113,21 @@ Play.prototype = {
 		// 	game.add.existing(this.snow);
 		// }
 
-		//Score of the game
-		scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
+
+		//Remain time of the game
+		this.times = game.add.text(16, 16, 'Time: 200');
+		this.times.fixedToCamera = true;
+		this.realTime = 200;
+		this.times.cameraOffset.setTo(650,15);
+		this.times.fill = '#ffffff';
+		this.times.setShadow(3, 3, 'rgba(1,1,0.8,0.3)', 2);
 
 		//Create the cursor of the game
 		cursors = game.input.keyboard.createCursorKeys();
+
+		//Set the timer for the game
+		game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
+		game.add.existing(this.player);
 
 		
 	},
@@ -121,6 +144,10 @@ Play.prototype = {
 		// baddie1.animations.play('left');
 		// baddie2.animations.play('right');
 
+	},
+	updateCounter: function(){
+		this.realTime--;
+		this.times.setText('Time: ' + this.realTime);
 	}
 
 }
@@ -147,4 +174,5 @@ function getBaddies(player, baddies){
 	//Lose the game, jump to GameOver state
 	game.state.start('GameOver');
 }
+
 

@@ -15,11 +15,11 @@ GameOver.prototype = {
         //getTopPlayers(5); // codes for test
 		/* should be deleted */
 		/*var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});*/
-		var tmp = game.cache.getImage('gameover');
+		
 		var title = game.add.sprite(280, 100, 'gameover');
 		var text = game.add.text(320, 200, 'Your Score is ' + score);
 		var text2 = game.add.text(320, 260, 'Your name: ' );
-		var tmp2 = game.cache.getImage('submitform');
+		
 		var submitForm = game.add.sprite(320, 300, 'submitform').scale.setTo(0.7,0.7);
 		
 		var submitButton = game.add.button(325, 350, 'submitbutton', actionSubmitClick, this, 2, 1, 0).scale.setTo(0.7,0.7);

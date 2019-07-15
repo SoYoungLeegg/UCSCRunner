@@ -30,7 +30,7 @@ Play.prototype = {
 		music = game.add.audio('pop');
 
 	  	//Create a player and its settings
-		this.player = new Player(game, 85, 1450, 'dude', 1,this.wallLayer);
+		this.player = new Player(game, 85, 1450, 'slug', 1,this.wallLayer);
 
 		//Set camera for the game
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);

@@ -8,6 +8,7 @@ MainMenu.prototype = {
 		game.load.image('diamond', 'assets/img/diamond.png');
 		game.load.image('snowFlake', 'assets/img/snowflake.png');
 		game.load.image('busStop', 'assets/img/busStop.png');
+		game.load.spritesheet('slug', 'assets/img/slugs.png',32,48);
 		game.load.spritesheet('dude', 'assets/img/dude.png',32,48);
 		game.load.spritesheet('baddie', 'assets/img/baddie.png',32,32);
 		game.load.tilemap('stage0', 'assets/TileMap/stage0.json', null, Phaser.Tilemap.TILED_JSON);

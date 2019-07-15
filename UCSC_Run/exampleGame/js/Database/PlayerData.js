@@ -41,19 +41,13 @@ function getTopPlayers(N) {
     let query = playerData.orderBy("score", "desc").limit(N);
     var topPlayers = [];
     var i = 0;
-
+    var returnValue;
     var promise = query.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             topPlayers[i] = doc.data();
             i = i + 1;
         });
         return topPlayers;
-    }).then(function(ret){
-        console.log("===Top Players===\n", ret);
-        return ret;
-    })
-    .catch(function(error) {
-        console.log("Error: failing to get data");
     });
 
     return promise;

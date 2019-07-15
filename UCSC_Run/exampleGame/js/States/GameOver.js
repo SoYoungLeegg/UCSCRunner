@@ -15,7 +15,7 @@ GameOver.prototype = {
 		/* tmp initialize score for debug */
 		/* should be deleted */
 		/*var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});*/
-		score = 11111;
+		//score = 1111;
 		var title = game.add.sprite(260, 100, 'gameover');
 		var text = game.add.text(300, 200, 'Your Score is ' + score);
 		var text2 = game.add.text(320, 260, 'Your name: ' );

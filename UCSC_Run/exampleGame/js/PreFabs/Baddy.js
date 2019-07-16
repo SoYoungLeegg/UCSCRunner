@@ -34,7 +34,6 @@ Baddy.prototype.update = function(){
 
 	game.physics.arcade.collide(this.player, this, this.checkCollide, null, this);
 
-	game.physics.arcade.overlap(this, this.player, this.killPlayer, null, this);
 	if(this.body.velocity.x > 0){
 		this.animations.play('right');
 	}else{
@@ -50,16 +49,17 @@ Baddy.prototype.addMovementToPoint = function(){
 }
 
 Baddy.prototype.checkCollide = function(){
-	if(this.player.body.y < this.body.y + 10){
+	if(this.player.body.y < (this.body.y - 10)){
+		console.log(this.player.body.y, this.body.y);
 		this.kill();
 		this.player.score += 100;
-		console.log(this.player.score);
 		this.player.body.velocity.y = -450;
 		this.stage.updateScore(this.player, this.stage);
+	}else{
+		game.state.start('GameOver');
 	}
 }
 
 Baddy.prototype.killPlayer = function(){
-	console.log(this.collideCond);
 	game.state.start('GameOver');
 }

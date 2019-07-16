@@ -8,13 +8,16 @@ var scoreButton;
 
 window.onload = function() {
 	game = new Phaser.Game(800, 600, Phaser.AUTO,);
+	game.state.add('Boot', Boot);
 	game.state.add('MainMenu', MainMenu);
 	game.state.add('Play', Play);
 	game.state.add('GameOver', GameOver);
 	game.state.add('ScoreBoard', ScoreBoard);
-	game.state.start('MainMenu');
+	game.state.add('Load', Load);
+	game.state.start('Boot');
 }
 
+var Load = function(game) {};
 var MainMenu = function(game){};
 var Play = function(game){};
 var GameOver = function(game){};

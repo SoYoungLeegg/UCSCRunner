@@ -56,6 +56,11 @@ Player.prototype.update = function(){
 		this.jumpCondition = 1;
 	}
 
+	if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+			//Press the space to start the play state
+			console.log(this.body.x, this.body.y);
+		}
+
 	//Set a win condition to the game
 	if(score == 150){
 		//After collect all stars, jump to game over state

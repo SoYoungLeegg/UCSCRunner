@@ -1,4 +1,4 @@
-function Baddy(game, x, y, key, frame, wallLayer, player, stage) {
+function Baddy(game, x, y, key, frame, wallLayer, player, stage, leftWall, rightWall) {
 	Phaser.Sprite.call(this,game,x,y,key,frame);
 	this.anchor.set(0.5);
 	this.wallLayer = wallLayer;
@@ -6,19 +6,16 @@ function Baddy(game, x, y, key, frame, wallLayer, player, stage) {
 	this.stage = stage;
 	game.physics.enable(this);
 	this.body.collideWorldBounds = true;
-	this.animations.add('left', [0, 1], 10, true);
-	this.animations.add('right', [2, 3], 10, true);
-	this.baddyEasing = Phaser.Easing.Linear.None;;
-	this.pointX = x;
-	this.pointY = y;
-	this.baddyDestPointX = x + 200;
-    this.baddyDestPointY = y;
-    this.baddyMovePeriod = 2000;
+	this.body.gravity.y = 600;
+	this.animations.add('fly', [0, 1, 2, 3, 4], 10, true);
+	
     this.body.checkCollision.up = true;
     this.body.checkCollision.left = false;
     this.body.checkCollision.right = false;
-    this.body.checkCollision.down = false;
-    this.collideCond = 0;
+    this.body.checkCollision.down = true;
+    this.leftWall = leftWall;
+    this.rightWall = rightWall;
+    this.moveCond = 0;
 
 }
 
@@ -26,7 +23,6 @@ Baddy.prototype = Object.create(Phaser.Sprite.prototype);
 Baddy.prototype.constructor = Baddy;
 
 Baddy.prototype.update = function(){
-	this.collideCond = 0;
 	//console.log(this.body.x,this.body.y);
 
 	//Check the physics between Baddy and platform
@@ -34,18 +30,29 @@ Baddy.prototype.update = function(){
 
 	game.physics.arcade.collide(this.player, this, this.checkCollide, null, this);
 
+	this.addMovementToPoint();
+
 	if(this.body.velocity.x > 0){
-		this.animations.play('right');
+		this.scale.setTo(1,1);
 	}else{
-		this.animations.play('left');
+		this.scale.setTo(-1,1);
 	}
+	this.animations.play('fly');
 
 
 }
 
 Baddy.prototype.addMovementToPoint = function(){
-    game.add.tween(this).to( { x: this.baddyDestPointX, y:this.baddyDestPointY}, this.baddyMovePeriod,
-        this.baddyEasing, true, 0, Number.POSITIVE_INFINITY, true);
+	if(this.body.x <= this.leftWall){
+		this.moveCond = 1;
+	}else if(this.body.x >= this.rightWall){
+		this.moveCond = 0;
+	}
+    if(this.body.x >= this.leftWall && this.moveCond == 0){
+    	this.body.velocity.x = -75;	   
+    }else if(this.body.x <= this.rightWall && this.moveCond == 1){
+    	this.body.velocity.x = 75;
+    }
 }
 
 Baddy.prototype.checkCollide = function(){

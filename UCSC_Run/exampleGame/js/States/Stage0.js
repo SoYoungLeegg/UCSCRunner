@@ -2,8 +2,7 @@
 //If player collect all the scores or touch the baddies, jump to Game Over state
 Play.prototype = {
 	init: function() {
-		score = 0;
-    fallingHeight = 2000;
+    	fallingHeight = 2000;
 
 	},
 
@@ -60,9 +59,33 @@ Play.prototype = {
 
 
 		//Create the enemy and its setting
-		this.baddie1 = new Baddy(game, 200, 1500, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
+		this.baddie1 = new Baddy(game, 200, 1600, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
+
+		this.baddie2 = new Baddy(game, 1133, 1400, 'bee', 1, this.wallLayer, this.player, this, 1033, 1200);
+
+		this.baddie3 = new Baddy(game, 1233, 1400, 'bee', 1, this.wallLayer, this.player, this, 1100, 1300);
+
+		this.baddie4 = new Baddy(game, 2860, 800, 'bee', 1, this.wallLayer, this.player, this, 2750, 2900);
+
+		this.baddie5 = new Baddy(game, 3060, 800, 'bee', 1, this.wallLayer, this.player, this, 3000, 3150);
+
+		this.baddie6 = new Baddy(game, 2798, 1195, 'bee', 1, this.wallLayer, this.player, this, 2700, 2850);
+
+		this.baddie7 = new Baddy(game, 3123, 1340, 'bee', 1, this.wallLayer, this.player, this, 3050, 3200);
+
+		this.baddie8 = new Baddy(game, 3903, 1490, 'bee', 1, this.wallLayer, this.player, this, 3850, 1530);
+
+
+
 
 		game.add.existing(this.baddie1);
+		game.add.existing(this.baddie2);
+		game.add.existing(this.baddie3);
+		game.add.existing(this.baddie4);
+		game.add.existing(this.baddie5);
+		game.add.existing(this.baddie6);
+		game.add.existing(this.baddie7);
+		game.add.existing(this.baddie8);
 		// //Create the enemy and its settings
 		// baddies = game.add.group();
 		// baddies.enableBody = true;
@@ -136,10 +159,12 @@ Play.prototype = {
 	},
 
 	update: function() {
+		score = this.player.score;
 
 		//Set a win condition to the game
 		if(this.realTime <= 0){
 			//After collect all stars, jump to game over state
+
 			game.state.start('GameOver');
 		}
 

@@ -3,6 +3,7 @@ var scoreText;
 var baddie1;
 var baddie2;
 var music;
+var score;
 var startButton;
 var scoreButton;
 
@@ -15,6 +16,7 @@ window.onload = function() {
 	game.state.add('ScoreBoard', ScoreBoard);
 	game.state.add('Load', Load);
 	game.state.start('Boot');
+
 }
 
 var Load = function(game) {};

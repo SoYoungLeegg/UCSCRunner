@@ -1,22 +1,29 @@
 var game;
 var scoreText;
 var baddie1;
-
 var baddie2;
-
 var music;
+var score;
+var startButton;
+var scoreButton;
+
 window.onload = function() {
-    WIDTH = 512
-    HEIGHT = 512
-	game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO,);
+	game = new Phaser.Game(800, 600, Phaser.AUTO,);
+	game.state.add('Boot', Boot);
 	game.state.add('MainMenu', MainMenu);
 	game.state.add('Play', Play);
 	game.state.add('GameOver', GameOver);
-	game.state.start('MainMenu');
+	game.state.add('ScoreBoard', ScoreBoard);
+	game.state.add('Load', Load);
+	game.state.start('Boot');
+
 }
+
+var Load = function(game) {};
 var MainMenu = function(game){};
 var Play = function(game){};
 var GameOver = function(game){};
+var ScoreBoard = function(game){};
 
 function preload(){}
 function create(){}

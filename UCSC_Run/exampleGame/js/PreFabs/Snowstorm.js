@@ -1,8 +1,7 @@
 //This file will create the snow function for the background
 
 function Snow(game, key, scale, rotation) {
-	Phaser.Sprite.call(this, game,
-        game.rnd.integerInRange(0, game.width),
+	Phaser.Sprite.call(this, game, game.rnd.integerInRange(0, game.width), 
 		game.rnd.integerInRange(0, game.width), key);
 	this.anchor.set(0.5);
 	this.scale.x = 0.2;

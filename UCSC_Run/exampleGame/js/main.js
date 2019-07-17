@@ -13,6 +13,7 @@ window.onload = function() {
 	game.state.add('GameOver', GameOver);
 	game.state.add('ScoreBoard', ScoreBoard);
 	game.state.start('MainMenu');
+	
 }
 
 var MainMenu = function(game){};

@@ -2,14 +2,16 @@
 
 ScoreBoard.prototype = {
 	preload: function(){
-		game.stage.backgroundColor = "#ffffff";
-		game.load.image('score', 'assets/img/scoretitle.png');
+		//game.stage.backgroundColor = "#ffffff";
+		game.load.image("background", "assets/img/sky.png");
+        game.load.image('score', 'assets/img/scoretitle.png');
 		game.load.image('scorecell', 'assets/img/scorecell.png');
 		game.load.image('restartbutton', 'assets/img/button/restartbutton.png');
 		
 	},
 	create: function(){
-		
+	
+        game.add.tileSprite(0, 0, 1000, 600, 'background');
 		var title = game.add.sprite(250, 100, 'score');
 		
 		/* var submitForm = game.add.sprite(210, 200, 'scorecell').scale.setTo(0.5,0.5); */

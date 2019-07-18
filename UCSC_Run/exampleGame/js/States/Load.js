@@ -17,11 +17,14 @@ Load.prototype = {
 		game.load.image('tile', 'assets/img/TileSet.png');
 		game.load.image('dormA', 'assets/img/DormA.png');
 		game.load.audio('pop', 'assets/audio/pop.ogg');
+		game.load.audio('finish', 'assets/audio/finish.wav');
+		game.load.image('diningHall', 'assets/img/diningHall.png');
 		game.load.image('startbutton', 'assets/img/button/startbutton.png');
 		game.load.image('scorebutton', 'assets/img/button/scorebutton.png');
 		game.load.image('building', 'assets/img/Building.png');
 		game.load.image('dBuilding', 'assets/img/doubleBuilding.png');
 		game.load.image('squiggle', 'assets/img/Squiggle.png');
+		game.load.atlas('portal', 'assets/img/portal.png','assets/img/portal.json');
 		game.stage.backgroundColor = "#facade";
 
 	},

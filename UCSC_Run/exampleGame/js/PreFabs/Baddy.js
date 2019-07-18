@@ -5,6 +5,7 @@ function Baddy(game, x, y, key, frame, wallLayer, player, stage, leftWall, right
 	this.player = player;
 	this.stage = stage;
 	game.physics.enable(this);
+	this.body.setSize(20,50,5,20);
 	this.body.collideWorldBounds = true;
 	this.body.gravity.y = 600;
 	this.animations.add('fly', [0, 1, 2, 3, 4], 10, true);

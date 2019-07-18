@@ -4,7 +4,7 @@ var input;
 GameOver.prototype = {
 
 	preload: function(){
-		game.stage.backgroundColor = "#ffffff";
+		game.stage.setBackgroundColor('#87CEEB');
 		game.load.image('gameover', 'assets/img/gameovertitle.png');
 		game.load.image('submitform', 'assets/img/submitform.png');
 		game.load.image('submitbutton', 'assets/img/button/submitbutton.png');
@@ -15,7 +15,7 @@ GameOver.prototype = {
 		/* tmp initialize score for debug */
 		/* should be deleted */
 		/*var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});*/
-		var title = game.add.sprite(260, 100, 'gameover');
+		var title = game.add.sprite(215, 100, 'gameover');
 		var text = game.add.text(280, 200, 'Your Score is ' + score);
 		var text2 = game.add.text(320, 260, 'Your name: ' );
 		

@@ -28,8 +28,8 @@ Play.prototype = {
 		//Add the music to game
 		music = game.add.audio('pop');
 
-	  	//Create a player and its settings
-		this.player = new Player(game, 85, 1450, 'slug', 1,this.wallLayer);
+	  	//Create a player and its settings 85
+		this.player = new Player(game, 85, 1350, 'slug', 1,this.wallLayer);
 
 		//Set camera for the game
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -47,33 +47,47 @@ Play.prototype = {
 		this.busStop.scale.setTo(0.5,0.5);
 
 		this.dormA = new Dorm(game, 3010, 1020, 'dormA', 1, this.player);
-		game.add.existing(this.dormA);
 
 		this.dBuilding = game.add.sprite(3940, 1310, 'dBuilding');
 		this.dBuilding.anchor.set(0.5);
 		this.dBuilding.scale.setTo(0.9,0.9);
 
+		this.diningHall = game.add.sprite(5583, 1115, 'diningHall');
+		this.diningHall.anchor.set(0.5);
+		this.diningHall.scale.setTo(0.7,0.7);
+
 		this.squiggle = game.add.sprite(1200, 1395, 'squiggle');
 		this.squiggle.anchor.set(0.5);
 		this.squiggle.scale.setTo(0.5,0.5);
 
+		//Set the protal of the stage
+		this.portal = new Portal(game, 5626, 1400, 'portal', 1, this.player, this);
+		game.add.existing(this.portal);
 
 		//Create the enemy and its setting
-		this.baddie1 = new Baddy(game, 200, 1600, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
+		this.baddie1 = new Baddy(game, 200 , 1600, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
 
 		this.baddie2 = new Baddy(game, 1133, 1400, 'bee', 1, this.wallLayer, this.player, this, 1033, 1200);
 
 		this.baddie3 = new Baddy(game, 1233, 1400, 'bee', 1, this.wallLayer, this.player, this, 1100, 1300);
 
-		this.baddie4 = new Baddy(game, 2860, 800, 'bee', 1, this.wallLayer, this.player, this, 2750, 2900);
+		this.baddie4 = new Baddy(game, 2860,  800, 'bee', 1, this.wallLayer, this.player, this, 2750, 2900);
 
-		this.baddie5 = new Baddy(game, 3060, 800, 'bee', 1, this.wallLayer, this.player, this, 3000, 3150);
+		this.baddie5 = new Baddy(game, 3060,  800, 'bee', 1, this.wallLayer, this.player, this, 3000, 3150);
 
 		this.baddie6 = new Baddy(game, 2798, 1195, 'bee', 1, this.wallLayer, this.player, this, 2700, 2850);
 
-		this.baddie7 = new Baddy(game, 3123, 1340, 'bee', 1, this.wallLayer, this.player, this, 3050, 3200);
+		this.baddie7 = new Baddy(game, 3100, 1300, 'bee', 1, this.wallLayer, this.player, this, 3088, 3141);
 
 		this.baddie8 = new Baddy(game, 3903, 1490, 'bee', 1, this.wallLayer, this.player, this, 3850, 1530);
+
+		this.baddie9 = new Baddy(game, 6050,  950, 'bee', 1, this.wallLayer, this.player, this, 6016, 6136);
+
+		this.baddie10= new Baddy(game, 3700, 1400, 'bee', 1, this.wallLayer, this.player, this, 3600, 3900);
+
+		this.baddie11= new Baddy(game, 4000, 1400, 'bee', 1, this.wallLayer, this.player, this, 3900, 4164);
+
+		this.baddie12= new Baddy(game, 1700, 900, 'bee', 1, this.wallLayer, this.player, this, 1600, 1968);
 
 
 
@@ -86,6 +100,11 @@ Play.prototype = {
 		game.add.existing(this.baddie6);
 		game.add.existing(this.baddie7);
 		game.add.existing(this.baddie8);
+		game.add.existing(this.baddie9);
+		game.add.existing(this.baddie10);
+		game.add.existing(this.baddie11);
+		game.add.existing(this.baddie12);
+		game.add.existing(this.dormA);
 		// //Create the enemy and its settings
 		// baddies = game.add.group();
 		// baddies.enableBody = true;

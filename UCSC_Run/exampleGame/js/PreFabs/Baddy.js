@@ -25,7 +25,6 @@ Baddy.prototype.constructor = Baddy;
 
 Baddy.prototype.update = function(){
 	//console.log(this.body.x,this.body.y);
-	game.debug.body(this);
 
 	//Check the physics between Baddy and platform
 	game.physics.arcade.collide(this, this.wallLayer);

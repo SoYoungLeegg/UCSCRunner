@@ -34,12 +34,8 @@ Play.prototype = {
 		//Set camera for the game
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-		//Set score for the game
-		this.scoreText = game.add.text(16, 16, 'Score: 0');
-		this.scoreText.fixedToCamera = true;
-		this.scoreText.cameraOffset.setTo(15,15);
-		this.scoreText.fill = '#ffffff';
-		this.scoreText.setShadow(3, 3, 'rgba(1,1,0.8,0.3)', 5);
+		//Set Instruction for the game
+		this.insText = game.add.text(83, 1300, 'Use Arrow Keys to Move!\nCollect Enough Score to Activate the Portal!')
 
 		//Set some background structure
 		this.busStop = game.add.sprite(180, 1560, 'busStop');
@@ -60,12 +56,15 @@ Play.prototype = {
 		this.squiggle.anchor.set(0.5);
 		this.squiggle.scale.setTo(0.5,0.5);
 
+		// this.hiddenWall1 = new Wall(game, 3744, 1350, 'ground', 1, this.player);
+		// game.add.existing(this.hiddenWall1);
+
 		//Set the protal of the stage
 		this.portal = new Portal(game, 5626, 1400, 'portal', 1, this.player, this);
 		game.add.existing(this.portal);
 
 		//Create the enemy and its setting
-		this.baddie1 = new Baddy(game, 200 , 1600, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
+		this.baddie1 = new Baddy(game, 200 , 1350, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
 
 		this.baddie2 = new Baddy(game, 1133, 1400, 'bee', 1, this.wallLayer, this.player, this, 1033, 1200);
 
@@ -89,6 +88,8 @@ Play.prototype = {
 
 		this.baddie12= new Baddy(game, 1700, 900, 'bee', 1, this.wallLayer, this.player, this, 1600, 1968);
 
+		this.baddie13= new Baddy(game, 1010, 1580, 'bee', 1, this.wallLayer, this.player, this, 952, 1099);
+
 
 
 
@@ -104,60 +105,8 @@ Play.prototype = {
 		game.add.existing(this.baddie10);
 		game.add.existing(this.baddie11);
 		game.add.existing(this.baddie12);
+		game.add.existing(this.baddie13);
 		game.add.existing(this.dormA);
-		// //Create the enemy and its settings
-		// baddies = game.add.group();
-		// baddies.enableBody = true;
-
-		// baddie1 = baddies.create(200, 0, 'baddie');
-		// baddie2 = baddies.create(125, 0, 'baddie');
-		// //Physics of enemies
-		// baddie1.body.collideWorldBounds = true;
-		// baddie2.body.collideWorldBounds = true;
-
-		// //Baddies' left and right animation
-		// baddie1.body.gravity.y = baddie2.body.gravity.y = 350;
-		// baddie1.animations.add('left', [0, 1], 10, true);
-		// baddie1.animations.add('right', [2, 3], 10, true);
-		// baddie2.animations.add('left', [0, 1], 10, true);
-		// baddie2.animations.add('right', [2, 3], 10, true);
-		
-		
-
-
-
-		// //Stars to be collected by players
-		// stars = game.add.group();
-
-		// //Stars can be touch in the game, so enable body
-		// stars.enableBody = true;
-
-		// //Create 12 starts in total
-		// for(var i = 0; i < 10; i++){
-		// 	var star = stars.create(i * 40, 0, 'star');
-
-		// 	//Set gravity to each star
-		// 	star.body.gravity.y = 100;
-
-		// 	//Give a slightly random bounce rate to every star
-		// 	star.body.bounce.y = 0.7 + Math.random() * 0.2;
-		// }
-
-		// //Diamond to be collected by players
-		// diamonds = game.add.group();
-
-		// //Diamond can be touch in the game, so enable body
-		// diamonds.enableBody = true;
-
-		// //Create a diamond in the air
-		// var diamond = diamonds.create(game.rnd.integerInRange(50,250), game.rnd.integerInRange(130,300), 'diamond');
-
-		// //Create the snow in the front end
-		// for(var i = 0; i < 100; ++i){
-		// 	this.snow = new Snow(game, 'snowFlake', 3, Math.PI);
-		// 	game.add.existing(this.snow);
-		// }
-
 
 		//Remain time of the game
 		this.times = game.add.text(16, 16, 'Time: 200');
@@ -166,6 +115,14 @@ Play.prototype = {
 		this.times.cameraOffset.setTo(650,15);
 		this.times.fill = '#ffffff';
 		this.times.setShadow(3, 3, 'rgba(1,1,0.8,0.3)', 2);
+
+
+		//Set score for the game
+		this.scoreText = game.add.text(16, 16, 'Score: 0');
+		this.scoreText.fixedToCamera = true;
+		this.scoreText.cameraOffset.setTo(15,15);
+		this.scoreText.fill = '#ffffff';
+		this.scoreText.setShadow(3, 3, 'rgba(1,1,0.8,0.3)', 5);
 
 		//Create the cursor of the game
 		cursors = game.input.keyboard.createCursorKeys();

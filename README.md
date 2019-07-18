@@ -1,2 +1,0 @@
-# UCSCRunner
-UCSC Endless Runner

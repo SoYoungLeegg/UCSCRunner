@@ -34,6 +34,6 @@ Portal.prototype.update = function(){
 Portal.prototype.hitPortal = function(){
 		//this.stage.bgmMusic.stop();
 		if(score >= 700){
-			game.state.start('GameOver');
+			game.state.start('GameWin');
 		}
 }

@@ -35,7 +35,23 @@ Play.prototype = {
 		game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
 		//Set Instruction for the game
-		this.insText = game.add.text(83, 1300, 'Use Arrow Keys to Move!\nCollect Enough Score to Activate the Portal!')
+		this.insText = game.add.text(83, 1300, 'Use Arrow Keys to Move!\nCollect Enough Score to Activate the Portal!');
+
+        // list of pickups
+        // If isGood, goodPickup.wav is played, else, trivial
+        var pizzaVal = 150;
+        var pizzaGood = true;
+        var iceVal = 300;
+        var iceGood = true;
+        var diaVal = 500;
+        var diaGood = true;
+
+        // Second picture
+        // 1 hidden coin
+        this.pizza = new Pickup(game, 2613, 915, 'pizza', 1,
+                        this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+        game.add.existing(this.pizza);
+        // This pizza code is here for generation of sprite before dormitory, to hide!
 
 		//Set some background structure
 		this.busStop = game.add.sprite(180, 1560, 'busStop');
@@ -90,9 +106,6 @@ Play.prototype = {
 
 		this.baddie13= new Baddy(game, 1010, 1580, 'bee', 1, this.wallLayer, this.player, this, 952, 1099);
 
-
-
-
 		game.add.existing(this.baddie1);
 		game.add.existing(this.baddie2);
 		game.add.existing(this.baddie3);
@@ -107,6 +120,53 @@ Play.prototype = {
 		game.add.existing(this.baddie12);
 		game.add.existing(this.baddie13);
 		game.add.existing(this.dormA);
+
+        // First image for reference
+        // Single coin on platform
+        this.pizza = new Pickup(game, 710, 1341, 'pizza', 1,
+                        this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+        game.add.existing(this.pizza);
+
+        // 8 coin on platform
+        for (var i = 0; i < 2; i++){
+            for (var j = 0; j < 4; j++){
+                var posX = 830 + 80 * i;
+                var posY = 1150 - 70 * j;
+                this.pizza = new Pickup(game, posX, posY, 'pizza', 1,
+                        this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+                game.add.existing(this.pizza);
+            }
+        }
+
+        // 1 diamond on platform
+        this.diamond = new Pickup(game, 1200, 960, 'diamond', 1,
+                        this.wallLayer, this.player, this, diaVal, diaGood);
+        game.add.existing(this.diamond);
+
+
+        // 2 stars underground
+        this.ice1 = new Pickup(game, 975, 1550, 'icecream', 1,
+                        this.wallLayer, this.player, this, iceVal, iceGood);
+        this.ice2 = new Pickup(game, 1030, 1550, 'icecream', 1,
+                        this.wallLayer, this.player, this, iceVal, iceGood);
+        game.add.existing(this.ice1);
+        game.add.existing(this.ice2);
+
+        // 7 consective coins orderd in V shape
+        for (var i = 0; i < 7; i++){
+            var posX = 1570 + 70 * i;
+            var posY = 1350 - 70 * (3 - Math.abs(i - 3));
+            this.pizza = new Pickup(game, posX, posY, 'pizza', 1,
+                    this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+            game.add.existing(this.pizza);
+        }
+
+        // Second image on reference
+        // 1 diamond on dormitory
+        this.diamond = new Pickup(game, 3450, 810, 'diamond', 1,
+                        this.wallLayer, this.player, this, diaVal, diaGood);
+        game.add.existing(this.diamond);
+
 
 		//Remain time of the game
 		this.times = game.add.text(16, 16, 'Time: 200');
@@ -159,34 +219,6 @@ Play.prototype = {
 		console.log(player.score);
 	}
 
-}
-
-function collectStar (player, star) {
-    //Remove the star from the screen
-    star.kill();
-    music.play();
-    score +=10;
-    scoreText.text = 'Score: ' + score;
-
-}
-function collectDiamond(player, diamond){
-	//Remove diamond from the screen
-	diamond.kill();
-	score += 50;
-	scoreText.text = 'Score: ' + score;
-}
-
-function getBaddies(player, baddies){
-	//Remove baddies from the screen
-	baddies.kill();
-	score -= 25;
-	//Lose the game, jump to GameOver state
-	game.state.start('GameOver');
-}
-
-function updateScore(player,stage){
-	//Set score for the game
-	stage.scoreText = 'Score: ' + player.score;
 }
 
 

@@ -10,6 +10,7 @@ function Player(game, x, y, key, frame,wallLayer) {
 	this.body.collideWorldBounds = true;
 	this.jumpCondition = 0;
 	this.score = 0;
+	this.maxGravity = 1500;
 
 	//Player's left and right animation
 	this.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -60,6 +61,10 @@ Player.prototype.update = function(){
 			//Press the space to start the play state
 			console.log(this.body.x, this.body.y);
 		}
+
+	if(this.body.velocity.y > this.maxGravity){
+		this.body.velocity.y = this.maxGravity;
+	}
 
 	//Set a win condition to the game
 	if(score == 150){

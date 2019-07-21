@@ -28,5 +28,6 @@ function actionStartClick () {
 }
 
 function actionScoreClick () {
+	//game.state.start('GameOver');
 	game.state.start('ScoreBoard');
 }

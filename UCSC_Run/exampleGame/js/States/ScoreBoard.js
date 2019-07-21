@@ -2,20 +2,12 @@
 
 ScoreBoard.prototype = {
 	preload: function(){
-<<<<<<< HEAD
 		//game.stage.backgroundColor = "#ffffff";
 		game.load.image("background", "assets/img/sky.png");
 
 		game.stage.setBackgroundColor('#87CEEB');
 		game.load.image('score', 'assets/img/scoretitle.png');
-=======
-
-		//game.stage.backgroundColor = "#ffffff";
-		game.load.image("background", "assets/img/sky.png");
-    game.stage.setBackgroundColor('#87CEEB');
-    game.load.image('score', 'assets/img/scoretitle.png');
->>>>>>> d6c5c36f70dabaf31313fb6e1ef56c66691df91a
-		game.load.image('scorecell', 'assets/img/scorecell.png');
+    	game.load.image('scorecell', 'assets/img/scorecell.png');
 		game.load.image('restartbutton', 'assets/img/button/restartbutton.png');
 		game.load.image('rank','assets/img/rank.png' )
 	},

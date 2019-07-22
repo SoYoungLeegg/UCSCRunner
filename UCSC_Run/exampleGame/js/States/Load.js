@@ -25,6 +25,7 @@ Load.prototype = {
 		game.load.image('dBuilding', 'assets/img/doubleBuilding.png');
 		game.load.image('squiggle', 'assets/img/Squiggle.png');
 		game.load.atlas('portal', 'assets/img/portal.png','assets/img/portal.json');
+        game.load.image('proterBackground', 'assets/img/Porter1_image.png');
 		game.stage.backgroundColor = "#facade";
 
 	},

@@ -33,6 +33,7 @@ Pickup.prototype.update = function(){
 }
 
 Pickup.prototype.checkOverlap = function(){
+        this.music.play();
         this.kill();
         this.player.score += this.pickupVal;
 		this.player.body.velocity.y = -400;

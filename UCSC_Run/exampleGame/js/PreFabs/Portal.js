@@ -33,7 +33,7 @@ Portal.prototype.update = function(){
 
 Portal.prototype.hitPortal = function(){
 		//this.stage.bgmMusic.stop();
-		if(score >= 2700){
+		if(score >= 3500){
 			game.state.start('GameWin');
 		}
 }

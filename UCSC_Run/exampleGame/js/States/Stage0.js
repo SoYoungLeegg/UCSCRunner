@@ -88,7 +88,7 @@ Play.prototype = {
             var iceVal = 300;
             var iceGood = true;
             var diaVal = 500;
-            var diaGood = true;
+            var diaGood = false;
 
             // Second picture
             // 1 hidden coin

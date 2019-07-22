@@ -4,17 +4,18 @@ ScoreBoard.prototype = {
 	preload: function(){
 		//game.stage.backgroundColor = "#ffffff";
 
-        game.load.image('porterBackground', 'assets/img/Porter1_image.png');
+    game.load.image('porterBackground', 'assets/img/Porter1_image.png');
 		game.stage.setBackgroundColor('#87CEEB');
 		game.load.image('score', 'assets/img/scoretitle.png');
-    	game.load.image('scorecell', 'assets/img/scorecell.png');
+    game.load.image('scorecell', 'assets/img/scorecell.png');
 		game.load.image('restartbutton', 'assets/img/button/restartbutton.png');
 		game.load.image('rank','assets/img/rank.png' )
 	},
 	create: function(){
-        var background = this.add.sprite(0,0,'porterBackground');
-        background.scale.setTo(0.55, 0.55);
+    var background = this.add.sprite(0,0,'porterBackground');
+    background.scale.setTo(0.55, 0.55);
         //game.add.tileSprite(0, 0, 1000, 600, 'porterBackground');
+
 		var title = game.add.sprite(250, 100, 'score');
 		
 		/* var submitForm = game.add.sprite(210, 200, 'scorecell').scale.setTo(0.5,0.5); */

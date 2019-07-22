@@ -2,15 +2,15 @@
 //If player collect all the scores or touch the baddies, jump to Game Over state
 Play.prototype = {
 	init: function() {
-    	fallingHeight = 2000;
-        loadingDone = false; // variable to check if the loading is done
-    },
-
+    fallingHeight = 2000;
+    loadingDone = false; // variable to check if the loading is done
+  },
+  
 	preload: function() {
 		game.load.image('busStop', 'assets/img/busStop.png');
 		game.load.image('slugBoi', 'assets/img/slugs.png');
 	},
-
+  
 	create: function() {
 		//This line enable the Arcade Physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -80,6 +80,22 @@ Play.prototype = {
             //Set Instruction for the game
             this.insText = game.add.text(83, 1300, 'Use Arrow Keys to Move!\nCollect Enough Score to Activate the Portal!')
 
+            // list of pickups
+            // If isGood, goodPickup.wav is played, else, trivial
+            var pizzaVal = 150;
+            var pizzaGood = true;
+            var iceVal = 300;
+            var iceGood = true;
+            var diaVal = 500;
+            var diaGood = true;
+
+            // Second picture
+            // 1 hidden coin
+            this.pizza = new Pickup(game, 2613, 915, 'pizza', 1,
+                            this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+            game.add.existing(this.pizza);
+            // This pizza code is here for generation of sprite before dormitory, to hide!
+
             //Set some background structure
             this.busStop = game.add.sprite(180, 1560, 'busStop');
             this.busStop.anchor.set(0.5);
@@ -148,6 +164,53 @@ Play.prototype = {
             game.add.existing(this.baddie13);
             game.add.existing(this.dormA);
 
+            // First image for reference
+            // Single coin on platform
+            this.pizza = new Pickup(game, 710, 1341, 'pizza', 1,
+                            this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+            game.add.existing(this.pizza);
+
+            // 8 coin on platform
+            for (var i = 0; i < 2; i++){
+                for (var j = 0; j < 4; j++){
+                    var posX = 830 + 80 * i;
+                    var posY = 1150 - 70 * j;
+                    this.pizza = new Pickup(game, posX, posY, 'pizza', 1,
+                            this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+                    game.add.existing(this.pizza);
+                }
+            }
+
+            // 1 diamond on platform
+            this.diamond = new Pickup(game, 1200, 960, 'diamond', 1,
+                            this.wallLayer, this.player, this, diaVal, diaGood);
+            game.add.existing(this.diamond);
+
+
+            // 2 stars underground
+            this.ice1 = new Pickup(game, 975, 1550, 'icecream', 1,
+                            this.wallLayer, this.player, this, iceVal, iceGood);
+            this.ice2 = new Pickup(game, 1030, 1550, 'icecream', 1,
+                            this.wallLayer, this.player, this, iceVal, iceGood);
+            game.add.existing(this.ice1);
+            game.add.existing(this.ice2);
+
+            // 7 consective coins orderd in V shape
+            for (var i = 0; i < 7; i++){
+                var posX = 1570 + 70 * i;
+                var posY = 1350 - 70 * (3 - Math.abs(i - 3));
+                this.pizza = new Pickup(game, posX, posY, 'pizza', 1,
+                        this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+                game.add.existing(this.pizza);
+            }
+
+            // Second image on reference
+            // 1 diamond on dormitory
+            this.diamond = new Pickup(game, 3450, 810, 'diamond', 1,
+                            this.wallLayer, this.player, this, diaVal, diaGood);
+            game.add.existing(this.diamond);
+
+
             //Set the timer for the game
             game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
             game.add.existing(this.player);
@@ -173,64 +236,27 @@ Play.prototype = {
 
         }).bind(this), 2000)
 	},
-
 	update: function() {
 		if (loadingDone) {
-        score = this.player.score;
-
-		//Set a win condition to the game
-		if(this.realTime <= 0){
-			//After collect all stars, jump to game over state
-
-			game.state.start('GameOver');
-		}
-
-		//Play baddies' animation
-		// baddie1.animations.play('left');
-		// baddie2.animations.play('right');
-        }
+      score = this.player.score;
+		  //Set a win condition to the game
+		  if(this.realTime <= 0){
+			    //After collect all stars, jump to game over state
+			    game.state.start('GameOver');
+		  }
+  }
 	},
 	updateCounter: function(){
         if (loadingDone) {
-		this.realTime--;
-		this.times.setText('Time: ' + this.realTime);
+          this.realTime--;
+          this.times.setText('Time: ' + this.realTime);
         }
 	},
 
 	updateScore: function(player,stage){
         if (loadingDone) {
-		this.scoreText.text = 'Score: ' + player.score;
-		console.log(player.score);
+          this.scoreText.text = 'Score: ' + player.score;
+          console.log(player.score);
         }
 	}
-
 }
-
-function collectStar (player, star) {
-    //Remove the star from the screen
-    star.kill();
-    music.play();
-    score +=10;
-    scoreText.text = 'Score: ' + score;
-
-}
-function collectDiamond(player, diamond){
-	//Remove diamond from the screen
-	diamond.kill();
-	score += 50;
-	scoreText.text = 'Score: ' + score;
-}
-
-function getBaddies(player, baddies){
-	//Remove baddies from the screen
-	baddies.kill();
-	score -= 25;
-	//Lose the game, jump to GameOver state
-	game.state.start('GameOver');
-}
-
-function updateScore(player,stage){
-	//Set score for the game
-	stage.scoreText = 'Score: ' + player.score;
-}
-

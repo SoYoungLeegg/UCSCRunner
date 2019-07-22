@@ -67,9 +67,8 @@ Player.prototype.update = function(){
 	}
 
 	//Set a win condition to the game
-	if(score == 150){
+	/*if(score == 150){
 		//After collect all stars, jump to game over state
 		game.state.start('GameOver');
-	}
-
+	}*/
 }

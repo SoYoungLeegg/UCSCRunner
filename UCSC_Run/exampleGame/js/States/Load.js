@@ -26,7 +26,11 @@ Load.prototype = {
 		game.load.image('squiggle', 'assets/img/Squiggle.png');
 		game.load.atlas('portal', 'assets/img/portal.png','assets/img/portal.json');
 		game.stage.backgroundColor = "#facade";
-
+    game.load.image('pizza', 'assets/img/Pizza.png');
+    game.load.image('icecream', 'assets/img/IceCream.png');
+    game.load.image('movebg', 'assets/img/BackGround_Clouds.png');
+    game.load.audio('goodPickUp', 'assets/audio/GoodPickUp.wav');
+    game.load.audio('badPickUp', 'assets/audio/BadPickUp.wav');
 	},
 	create: function(){
 		game.state.start('MainMenu');

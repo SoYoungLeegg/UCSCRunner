@@ -13,7 +13,7 @@ function Pickup(game, x, y, key, frame, wallLayer, player, stage, pickupVal, isG
     this.body.checkCollision.up = true;
     this.body.checkCollision.left = true;
     this.body.checkCollision.right = true;
-    this.body.checkCollision.down = false;
+    this.body.checkCollision.down = true;
 
     if(isGood){
         this.music = game.add.audio('goodPickUp');

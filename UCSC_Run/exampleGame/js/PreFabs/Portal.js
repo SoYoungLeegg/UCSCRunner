@@ -20,7 +20,7 @@ Portal.prototype = Object.create(Phaser.Sprite.prototype);
 Portal.prototype.constructor = Portal;
 Portal.prototype.update = function(){
 	game.physics.arcade.overlap(this, this.player, this.hitPortal, null, this);
-	if(score < 700){
+	if(score < 3500){
 		this.animations.play('stay');
 	}else{
 		if(this.musicPlay){

@@ -2,7 +2,7 @@
 //If player collect all the scores or touch the baddies, jump to Game Over state
 Play.prototype = {
 	init: function() {
-    fallingHeight = 2500;
+    fallingHeight = 2200;
     loadingDone = false; // variable to check if the loading is done
   },
   

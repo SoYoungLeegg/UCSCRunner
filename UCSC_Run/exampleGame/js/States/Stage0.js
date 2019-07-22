@@ -79,7 +79,7 @@ Play.prototype = {
             game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
             //Set Instruction for the game
-            this.insText = game.add.text(83, 1300, 'Use Arrow Keys to Move!\nCollect Enough Score to Activate the Portal!')
+            this.insText = game.add.text(83, 1300, 'Use the Arrow Keys to Move!\nCollect Enough Items to Activate the Portal!')
 
             // list of pickups
             // If isGood, goodPickup.wav is played, else, trivial

@@ -2,7 +2,7 @@
 //If player collect all the scores or touch the baddies, jump to Game Over state
 Play.prototype = {
 	init: function() {
-    fallingHeight = 2000;
+    fallingHeight = 2500;
     loadingDone = false; // variable to check if the loading is done
   },
   
@@ -70,6 +70,7 @@ Play.prototype = {
             game.stage.setBackgroundColor('#87CEEB');
             //Add the music to game
             music = game.add.audio('pop');
+            bgMusic.play();
 
             //Create a player and its settings 85
             this.player = new Player(game, 85, 1350, 'slug', 1,this.wallLayer);

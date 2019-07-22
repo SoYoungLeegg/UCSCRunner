@@ -18,6 +18,7 @@ GameOver.prototype = {
 		var title = game.add.sprite(215, 100, 'gameover');
 		var text = game.add.text(280, 200, 'Your Score is ' + score);
 		var text2 = game.add.text(320, 260, 'Your name: ' );
+		bgMusic.stop();
 		
 		var submitForm = game.add.sprite(235, 300, 'submitform').scale.setTo(0.9,0.9);
 

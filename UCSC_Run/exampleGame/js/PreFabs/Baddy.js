@@ -58,7 +58,7 @@ Baddy.prototype.addMovementToPoint = function(){
 
 Baddy.prototype.checkCollide = function(){
 	if(this.player.body.y < (this.body.y - 10)){
-		console.log(this.player.body.y, this.body.y);
+		music.play();
 		this.kill();
 		this.player.score += 100;
 		this.player.body.velocity.y = -450;

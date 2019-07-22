@@ -20,7 +20,7 @@ function Pickup(game, x, y, key, frame, wallLayer, player, stage, pickupVal, isG
     } else{
         this.music = game.add.audio('badPickUp');
     }
-    this.music.volumn = 0.3;
+    this.music.volume = 0.3;
 }
 
 Pickup.prototype = Object.create(Phaser.Sprite.prototype);

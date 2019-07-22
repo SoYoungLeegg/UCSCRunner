@@ -2,7 +2,7 @@
 // //Main menu state will only appear when player enter the game for first time
 MainMenu.prototype = {
 	preload: function(){
-		game.stage.backgroundColor = "#facade";
+		game.stage.backgroundColor = "#87CEEB";
 
 	},
 	create: function(){
@@ -12,6 +12,9 @@ MainMenu.prototype = {
 		//Create restart button
 		startButton = game.add.button(325, 400, 'startbutton', actionStartClick, this, 2, 1, 0).scale.setTo(0.5,0.5);
 		scoreButton = game.add.button(325, 450, 'scorebutton', actionScoreClick, this, 2, 1, 0).scale.setTo(0.5,0.5);
+		this.title = game.add.sprite(400, 250, 'title');
+		this.title.anchor.set(0.5);
+		this.title.scale.setTo(0.25,0.25);
 		//button.fixedToCamera = true;
     	//button.cameraOffset.setTo(300, 100);
 	},

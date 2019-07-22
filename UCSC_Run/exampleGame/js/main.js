@@ -6,6 +6,7 @@ var music;
 var score;
 var startButton;
 var scoreButton;
+var bgMusic;
 
 window.onload = function() {
 	game = new Phaser.Game(800, 600, Phaser.AUTO,);

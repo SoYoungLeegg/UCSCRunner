@@ -13,6 +13,7 @@ window.onload = function() {
 	game.state.add('MainMenu', MainMenu);
 	game.state.add('Play', Play);
 	game.state.add('GameOver', GameOver);
+	game.state.add('GameWin', GameWin);
 	game.state.add('ScoreBoard', ScoreBoard);
 	game.state.add('Load', Load);
 	game.state.start('Boot');
@@ -23,6 +24,7 @@ var Load = function(game) {};
 var MainMenu = function(game){};
 var Play = function(game){};
 var GameOver = function(game){};
+var GameWin = function(game){};
 var ScoreBoard = function(game){};
 
 function preload(){}

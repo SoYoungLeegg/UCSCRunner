@@ -71,5 +71,4 @@ Player.prototype.update = function(){
 		//After collect all stars, jump to game over state
 		game.state.start('GameOver');
 	}*/
-
 }

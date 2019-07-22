@@ -17,7 +17,6 @@ function Baddy(game, x, y, key, frame, wallLayer, player, stage, leftWall, right
     this.leftWall = leftWall;
     this.rightWall = rightWall;
     this.moveCond = 0;
-
 }
 
 Baddy.prototype = Object.create(Phaser.Sprite.prototype);
@@ -39,8 +38,6 @@ Baddy.prototype.update = function(){
 		this.scale.setTo(-1,1);
 	}
 	this.animations.play('fly');
-
-
 }
 
 Baddy.prototype.addMovementToPoint = function(){

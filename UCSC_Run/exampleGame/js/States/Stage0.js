@@ -87,7 +87,7 @@ Play.prototype = {
             var pizzaGood = true;
             var iceVal = 300;
             var iceGood = true;
-            var diaVal = 500;
+            var diaVal = -500;
             var diaGood = false;
 
             // Second picture
@@ -116,9 +116,6 @@ Play.prototype = {
             this.squiggle.anchor.set(0.5);
             this.squiggle.scale.setTo(0.5,0.5);
 
-            // this.hiddenWall1 = new Wall(game, 3744, 1350, 'ground', 1, this.player);
-            // game.add.existing(this.hiddenWall1);
-
             //Set the protal of the stage
             this.portal = new Portal(game, 5626, 1400, 'portal', 1, this.player, this);
             game.add.existing(this.portal);
@@ -140,13 +137,11 @@ Play.prototype = {
 
             this.baddie8 = new Baddy(game, 3903, 1490, 'bee', 1, this.wallLayer, this.player, this, 3850, 1530);
 
-            this.baddie9 = new Baddy(game, 6050,  950, 'bee', 1, this.wallLayer, this.player, this, 6016, 6136);
-
             this.baddie10= new Baddy(game, 3700, 1400, 'bee', 1, this.wallLayer, this.player, this, 3600, 3900);
 
             this.baddie11= new Baddy(game, 4000, 1400, 'bee', 1, this.wallLayer, this.player, this, 3900, 4164);
 
-            this.baddie12= new Baddy(game, 1700, 900, 'bee', 1, this.wallLayer, this.player, this, 1600, 1968);
+            this.baddie12= new Baddy(game, 1700, 910, 'bee', 1, this.wallLayer, this.player, this, 1600, 1968);
 
             this.baddie13= new Baddy(game, 1010, 1580, 'bee', 1, this.wallLayer, this.player, this, 952, 1099);
 
@@ -158,7 +153,6 @@ Play.prototype = {
             game.add.existing(this.baddie6);
             game.add.existing(this.baddie7);
             game.add.existing(this.baddie8);
-            game.add.existing(this.baddie9);
             game.add.existing(this.baddie10);
             game.add.existing(this.baddie11);
             game.add.existing(this.baddie12);

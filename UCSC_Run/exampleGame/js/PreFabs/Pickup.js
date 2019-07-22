@@ -10,12 +10,13 @@ function Pickup(game, x, y, key, frame, wallLayer, player, stage, pickupVal, isG
 	this.body.collideWorldBounds = false;
 	this.body.gravity.y = 0;
 
+    this.isGood= isGood;
     this.body.checkCollision.up = true;
     this.body.checkCollision.left = true;
     this.body.checkCollision.right = true;
     this.body.checkCollision.down = true;
 
-    if(isGood){
+    if(this.isGood){
         this.music = game.add.audio('goodPickUp');
     } else{
         this.music = game.add.audio('badPickUp');

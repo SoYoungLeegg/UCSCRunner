@@ -32,15 +32,12 @@ Pickup.prototype.update = function(){
 }
 
 Pickup.prototype.checkOverlap = function(){
-	if(this.player.body.y < (this.body.y - 10)){
-		console.log(this.player.body.y, this.body.y);
-		this.music.play();
         this.kill();
         this.player.score += this.pickupVal;
 		this.player.body.velocity.y = -400;
 		this.stage.updateScore(this.player, this.stage);
 	}
-}
+
 
 
 

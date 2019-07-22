@@ -121,7 +121,7 @@ Play.prototype = {
             game.add.existing(this.portal);
 
             //Create the enemy and its setting
-            this.baddie1 = new Baddy(game, 200 , 1350, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
+            this.baddie1 = new Baddy(game, 200 , 1530, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
 
             this.baddie2 = new Baddy(game, 1133, 1400, 'bee', 1, this.wallLayer, this.player, this, 1033, 1200);
 

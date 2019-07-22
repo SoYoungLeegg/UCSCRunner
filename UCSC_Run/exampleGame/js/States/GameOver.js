@@ -12,6 +12,8 @@ GameOver.prototype = {
 		game.add.plugin(PhaserInput.Plugin);
 	},
 	create: function(){
+		bgMusic.stop();
+
 		var background = this.add.sprite(0,0,'porterBackground');
 		background.scale.setTo(0.55, 0.55);
 		background.tint = 1.2 * 0xffffff;
@@ -19,7 +21,7 @@ GameOver.prototype = {
 		var title = game.add.sprite(215, 100, 'gameover');
 		var text = game.add.text(280, 200, 'Your Score is ' + score).addColor("#ffffff", 0); 
 		var text2 = game.add.text(320, 260, 'Your name: ' ).addColor("#ffffff", 0); 
-		bgMusic.stop();
+		
 		
 		var submitForm = game.add.sprite(235, 300, 'submitform').scale.setTo(0.9,0.9);
 

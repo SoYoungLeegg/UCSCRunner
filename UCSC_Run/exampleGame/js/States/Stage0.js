@@ -78,7 +78,7 @@ Play.prototype = {
             game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
             //Set Instruction for the game
-            this.insText = game.add.text(83, 1300, 'Use the Arrow Keys to Move!\nCollect Enough Items to Activate the Portal!')
+            this.insText = game.add.text(83, 1300, 'Use the Arrow Keys to Move!\n Achieve a score of 2500 to Activate the Portal!')
 
             // list of pickups
             // If isGood, goodPickup.wav is played, else, trivial
@@ -119,7 +119,14 @@ Play.prototype = {
             //Set the protal of the stage
             this.portal = new Portal(game, 5626, 1400, 'portal', 1, this.player, this);
             game.add.existing(this.portal);
+            
+            //troll muffin to mess with player score
             this.diamond = new Pickup(game, 5950, 1200, 'diamond', 1,
+                            this.wallLayer, this.player, this, diaVal, diaGood);
+            game.add.existing(this.diamond);
+            
+            //blocking muffin to make player take other route
+            this.diamond = new Pickup(game, 4930, 1200, 'diamond', 1,
                             this.wallLayer, this.player, this, diaVal, diaGood);
             game.add.existing(this.diamond);
 
@@ -184,7 +191,7 @@ Play.prototype = {
                             this.wallLayer, this.player, this, pizzaVal, pizzaGood);
             game.add.existing(this.pizza);
             
-             // 1 diamond in cave to deter people
+             // 2 diamond in cave to deter people
             this.diamond = new Pickup(game, 220, 1840, 'diamond', 1,
                             this.wallLayer, this.player, this, diaVal, diaGood);
             game.add.existing(this.diamond);
@@ -235,9 +242,9 @@ Play.prototype = {
             game.add.existing(this.player);
 
             //Remain time of the game
-            this.times = game.add.text(16, 16, 'Time: 200');
+            this.times = game.add.text(16, 16, 'Time: 400');
             this.times.fixedToCamera = true;
-            this.realTime = 200;
+            this.realTime = 400;
             this.times.cameraOffset.setTo(650,15);
             this.times.fill = '#ffffff';
             this.times.setShadow(3, 3, 'rgba(1,1,0.8,0.3)', 2);

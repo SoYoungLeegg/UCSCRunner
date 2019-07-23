@@ -20,8 +20,6 @@ Play.prototype = {
 		// Progress bar
 		var loadingBar = this.add.sprite(game.width/2, game.height/2, 'slugBoi');
 		loadingBar.anchor.set(0.5);
-		console.log(loadingBar.width, loadingBar.height);
-		console.log(game.width, game.height);
 
 		//New tilemaplayer object
 		this.groundLayer = this.map.createLayer('BackGround');
@@ -103,7 +101,7 @@ Play.prototype = {
 
 			this.dormA = new Dorm(game, 3010, 1020, 'dormA', 1, this.player);
 
-			this.dBuilding = game.add.sprite(3940, 1310, 'dBuilding');
+			this.dBuilding = game.add.sprite(3940, 1303, 'dBuilding');
 			this.dBuilding.anchor.set(0.5);
 			this.dBuilding.scale.setTo(0.9,0.9);
 
@@ -280,7 +278,6 @@ Play.prototype = {
 	updateScore: function(player,stage){
 		if (loadingDone) {
 			this.scoreText.text = 'Score: ' + player.score;
-			console.log(player.score);
 		}
 	}
 }

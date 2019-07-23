@@ -6,11 +6,11 @@ function Pickup(game, x, y, key, frame, wallLayer, player, stage, pickupVal, isG
 	this.stage = stage;
 	this.pickupVal = pickupVal;
 	game.physics.enable(this);
-	this.body.setSize(20,50,5,20);
+	this.body.setSize(30,30,8,8);
 	this.body.collideWorldBounds = false;
 	this.body.gravity.y = 0;
 
-	this.isGood= isGood;
+	this.isGood = isGood;
 	this.body.checkCollision.up = true;
 	this.body.checkCollision.left = true;
 	this.body.checkCollision.right = true;

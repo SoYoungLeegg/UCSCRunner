@@ -145,6 +145,10 @@ Play.prototype = {
 
             this.baddie13= new Baddy(game, 1010, 1580, 'bee', 1, this.wallLayer, this.player, this, 952, 1099);
 
+            this.baddie14= new Baddy(game, 950,  1850, 'bee', 1, this.wallLayer, this.player, this, 910, 1277);
+
+            this.baddie15= new Baddy(game, 300,  1850, 'bee', 1, this.wallLayer, this.player, this, 131, 587);
+
             game.add.existing(this.baddie1);
             game.add.existing(this.baddie2);
             game.add.existing(this.baddie3);
@@ -157,6 +161,8 @@ Play.prototype = {
             game.add.existing(this.baddie11);
             game.add.existing(this.baddie12);
             game.add.existing(this.baddie13);
+            game.add.existing(this.baddie14);
+            game.add.existing(this.baddie15);
             game.add.existing(this.dormA);
 
             // First image for reference

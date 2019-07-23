@@ -12,15 +12,13 @@ ScoreBoard.prototype = {
 	},
 	create: function(){
 		var background = this.add.sprite(0,0,'porterBackground');
-
 		background.scale.setTo(0.55, 0.55);
 		//background.tint = 1.2 * 0xffffff;
 
 		var title = game.add.sprite(250, 100, 'score');
-
 		var restartButton = game.add.button(320, 500, 'restartbutton', actionRestartClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
-
-		var scrollArrow = game.add.sprite(570,150, 'scrollArrow' ).scale.setTo(0.5,0.5);;
+		var scrollArrow = game.add.sprite(600,260, 'scrollArrow' ).scale.setTo(0.5,0.5);;
+		
 		var x = 165;
 		var y = 200;
 		var w = 800;

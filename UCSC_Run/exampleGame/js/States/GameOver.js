@@ -34,7 +34,7 @@ GameOver.prototype = {
 			borderColor: '#ffffff',
 			borderRadius: 6,
 			placeHolder: '',
-			max: 12,
+			max: 10,
 		});
 
 		var submitButton = game.add.button(325, 360, 'submitbutton', actionSubmitClick, this, 2, 1, 0).scale.setTo(0.7,0.7);

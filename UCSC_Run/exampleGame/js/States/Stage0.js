@@ -10,7 +10,6 @@ Play.prototype = {
 		game.load.image('busStop', 'assets/img/busStop.png');
 		game.load.image('slugBoi', 'assets/img/slugs.png');
 	},
-  
 	create: function() {
 		//This line enable the Arcade Physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -96,7 +95,8 @@ Play.prototype = {
                             this.wallLayer, this.player, this, pizzaVal, pizzaGood);
             game.add.existing(this.pizza);
             // This pizza code is here for generation of sprite before dormitory, to hide!
-
+            //1 hidden diamond in right side cave
+           
             //Set some background structure
             this.busStop = game.add.sprite(180, 1560, 'busStop');
             this.busStop.anchor.set(0.5);
@@ -119,6 +119,9 @@ Play.prototype = {
             //Set the protal of the stage
             this.portal = new Portal(game, 5626, 1400, 'portal', 1, this.player, this);
             game.add.existing(this.portal);
+            this.diamond = new Pickup(game, 5950, 1200, 'diamond', 1,
+                            this.wallLayer, this.player, this, diaVal, diaGood);
+            game.add.existing(this.diamond);
 
             //Create the enemy and its setting
             this.baddie1 = new Baddy(game, 200 , 1530, 'bee', 1, this.wallLayer, this.player, this, 150, 300);
@@ -170,7 +173,26 @@ Play.prototype = {
             this.pizza = new Pickup(game, 710, 1341, 'pizza', 1,
                             this.wallLayer, this.player, this, pizzaVal, pizzaGood);
             game.add.existing(this.pizza);
-
+            
+            //pizza below the first hard cave
+            this.pizza = new Pickup(game, 110, 1835, 'pizza', 1,
+                            this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+            game.add.existing(this.pizza);
+            
+            //pizza below the first hard cave
+            this.pizza = new Pickup(game, 110, 1875, 'pizza', 1,
+                            this.wallLayer, this.player, this, pizzaVal, pizzaGood);
+            game.add.existing(this.pizza);
+            
+             // 1 diamond in cave to deter people
+            this.diamond = new Pickup(game, 220, 1840, 'diamond', 1,
+                            this.wallLayer, this.player, this, diaVal, diaGood);
+            game.add.existing(this.diamond);
+            
+            this.diamond = new Pickup(game, 320, 1900, 'diamond', 1,
+                            this.wallLayer, this.player, this, diaVal, diaGood);
+            game.add.existing(this.diamond);
+            
             // 8 coin on platform
             for (var i = 0; i < 2; i++){
                 for (var j = 0; j < 4; j++){
@@ -186,16 +208,13 @@ Play.prototype = {
             this.diamond = new Pickup(game, 1200, 960, 'diamond', 1,
                             this.wallLayer, this.player, this, diaVal, diaGood);
             game.add.existing(this.diamond);
-
-
-            // 2 stars underground
+            // 2 ice creams underground
             this.ice1 = new Pickup(game, 975, 1550, 'icecream', 1,
                             this.wallLayer, this.player, this, iceVal, iceGood);
             this.ice2 = new Pickup(game, 1030, 1550, 'icecream', 1,
                             this.wallLayer, this.player, this, iceVal, iceGood);
             game.add.existing(this.ice1);
             game.add.existing(this.ice2);
-
             // 7 consective coins orderd in V shape
             for (var i = 0; i < 7; i++){
                 var posX = 1570 + 70 * i;
@@ -204,14 +223,13 @@ Play.prototype = {
                         this.wallLayer, this.player, this, pizzaVal, pizzaGood);
                 game.add.existing(this.pizza);
             }
-
             // Second image on reference
+            //1 diamond in dorm interior
+            
             // 1 diamond on dormitory
             this.diamond = new Pickup(game, 3450, 810, 'diamond', 1,
                             this.wallLayer, this.player, this, diaVal, diaGood);
             game.add.existing(this.diamond);
-
-
             //Set the timer for the game
             game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
             game.add.existing(this.player);

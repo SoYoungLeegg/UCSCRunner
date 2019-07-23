@@ -2,18 +2,25 @@
 // //Main menu state will only appear when player enter the game for first time
 MainMenu.prototype = {
 	preload: function(){
-		game.stage.backgroundColor = "#facade";
-
+		game.stage.backgroundColor = "#87CEEB";
+		game.load.image('porterBackground', 'assets/img/Porter1_image.png');
 	},
 	create: function(){
 		//Add a short intro for the game
-		/* var menuText = game.add.text(16, 16, 'Start Catch Game\nUse Arrow Key To Move\nPress [Space] to Start', {fontSize: '32px', fill: '#000'}); */
+		var background = this.add.sprite(0,0,'porterBackground');
+		background.scale.setTo(0.55, 0.55);
+		background.tint = 1.2 * 0xffffff;
 
-		//Create restart button
+		//title
+		this.title = game.add.sprite(410, 250, 'title');
+		this.title.anchor.set(0.5);
+		this.title.scale.setTo(0.25,0.25);
+
+		//Create start & score button
 		startButton = game.add.button(325, 400, 'startbutton', actionStartClick, this, 2, 1, 0).scale.setTo(0.5,0.5);
 		scoreButton = game.add.button(325, 450, 'scorebutton', actionScoreClick, this, 2, 1, 0).scale.setTo(0.5,0.5);
-		//button.fixedToCamera = true;
-    	//button.cameraOffset.setTo(300, 100);
+		
+		
 	},
 	update: function(){
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {

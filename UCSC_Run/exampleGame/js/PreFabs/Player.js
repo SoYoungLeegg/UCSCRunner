@@ -24,8 +24,6 @@ Player.prototype.update = function(){
 
 	//Check the physics between player and platform
 	game.physics.arcade.collide(this, this.wallLayer);
-
-
 	//Reset the players velocity (movement)
 	this.body.velocity.x = 0;
 
@@ -64,12 +62,6 @@ Player.prototype.update = function(){
 
 	if(this.body.velocity.y > this.maxGravity){
 		this.body.velocity.y = this.maxGravity;
-	}
-
-	//Set a win condition to the game
-	if(score == 150){
-		//After collect all stars, jump to game over state
-		game.state.start('GameOver');
 	}
 
 }

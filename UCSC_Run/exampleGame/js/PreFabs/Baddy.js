@@ -17,7 +17,6 @@ function Baddy(game, x, y, key, frame, wallLayer, player, stage, leftWall, right
     this.leftWall = leftWall;
     this.rightWall = rightWall;
     this.moveCond = 0;
-
 }
 
 Baddy.prototype = Object.create(Phaser.Sprite.prototype);
@@ -39,8 +38,6 @@ Baddy.prototype.update = function(){
 		this.scale.setTo(-1,1);
 	}
 	this.animations.play('fly');
-
-
 }
 
 Baddy.prototype.addMovementToPoint = function(){
@@ -58,7 +55,7 @@ Baddy.prototype.addMovementToPoint = function(){
 
 Baddy.prototype.checkCollide = function(){
 	if(this.player.body.y < (this.body.y - 10)){
-		console.log(this.player.body.y, this.body.y);
+		music.play();
 		this.kill();
 		this.player.score += 100;
 		this.player.body.velocity.y = -450;

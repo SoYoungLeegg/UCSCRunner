@@ -24,12 +24,19 @@ Load.prototype = {
 		game.load.image('building', 'assets/img/Building.png');
 		game.load.image('dBuilding', 'assets/img/doubleBuilding.png');
 		game.load.image('squiggle', 'assets/img/Squiggle.png');
+		game.load.image('title', 'assets/img/titlePage.png');
 		game.load.atlas('portal', 'assets/img/portal.png','assets/img/portal.json');
         game.load.image('proterBackground', 'assets/img/Porter1_image.png');
 		game.stage.backgroundColor = "#facade";
-
+    game.load.image('pizza', 'assets/img/Pizza.png');
+    game.load.image('icecream', 'assets/img/IceCream.png');
+    game.load.image('movebg', 'assets/img/BackGround_Clouds.png');
+    game.load.audio('goodPickUp', 'assets/audio/GoodPickUp.wav');
+    game.load.audio('badPickUp', 'assets/audio/BadPickUp.wav');
+    game.load.audio('bgMusic', 'assets/audio/Starry Field.ogg');
 	},
 	create: function(){
+		bgMusic = game.add.audio('bgMusic', 1, true);
 		game.state.start('MainMenu');
 	}
 }

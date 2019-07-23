@@ -4,7 +4,7 @@ var input;
 GameOver.prototype = {
 
 	preload: function(){
-		game.stage.setBackgroundColor('#87CEEB');
+		game.load.image('porterBackground', 'assets/img/Porter1_image.png');
 		game.load.image('gameover', 'assets/img/gameovertitle.png');
 		game.load.image('submitform', 'assets/img/submitform.png');
 		game.load.image('submitbutton', 'assets/img/button/submitbutton.png');
@@ -12,12 +12,16 @@ GameOver.prototype = {
 		game.add.plugin(PhaserInput.Plugin);
 	},
 	create: function(){
-		/* tmp initialize score for debug */
-		/* should be deleted */
-		/*var menuText = game.add.text(16, 16, 'GameOver\nYour Score is ' + score + '\nPress [Space] to Retry', {fontSize: '32px', fill: '#000'});*/
+		bgMusic.stop();
+
+		var background = this.add.sprite(0,0,'porterBackground');
+		background.scale.setTo(0.55, 0.55);
+		background.tint = 1.2 * 0xffffff;
+		
 		var title = game.add.sprite(215, 100, 'gameover');
-		var text = game.add.text(280, 200, 'Your Score is ' + score);
-		var text2 = game.add.text(320, 260, 'Your name: ' );
+		var text = game.add.text(280, 200, 'Your Score is ' + score).addColor("#ffffff", 0); 
+		var text2 = game.add.text(320, 260, 'Your name: ' ).addColor("#ffffff", 0); 
+		
 		
 		var submitForm = game.add.sprite(235, 300, 'submitform').scale.setTo(0.9,0.9);
 
@@ -32,6 +36,7 @@ GameOver.prototype = {
 			borderColor: '#ffffff',
 			borderRadius: 6,
 			placeHolder: '',
+			max: 12,
 		});
 		
 		var submitButton = game.add.button(325, 360, 'submitbutton', actionSubmitClick, this, 2, 1, 0).scale.setTo(0.7,0.7);

@@ -18,7 +18,7 @@ GameWin.prototype = {
 		var title = game.add.sprite(240, 100, 'gamewin');
 		var text = game.add.text(280, 200, 'Your Score is ' + score).addColor("#ffffff", 0); 
 		var text2 = game.add.text(320, 260, 'Your name: ' ).addColor("#ffffff", 0); 
-		
+
 		var submitForm = game.add.sprite(235, 300, 'submitform').scale.setTo(0.9,0.9);
 
 		input = game.add.inputField(285, 305, {
@@ -34,7 +34,7 @@ GameWin.prototype = {
 			placeHolder: '',
 			max: 12,
 		});
-		
+
 		var submitButton = game.add.button(325, 360, 'submitbutton', actionSubmitClick, this, 2, 1, 0).scale.setTo(0.7,0.7);
 
 		var restartButton = game.add.button(315, 410, 'restartbutton', actionRestartClick, this, 2, 1, 0).scale.setTo(0.7,0.7);

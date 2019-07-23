@@ -4,8 +4,7 @@ Play.prototype = {
 	init: function() {
 	fallingHeight = 2200;
 	loadingDone = false; // variable to check if the loading is done
-  },
-  
+	}, 
 	preload: function() {
 		game.load.image('busStop', 'assets/img/busStop.png');
 		game.load.image('slugBoi', 'assets/img/slugs.png');
@@ -41,7 +40,7 @@ Play.prototype = {
 		setTimeout(function() {
 			progressBox.x += 130;
 		}, 850)
-	   setTimeout(function() {
+		setTimeout(function() {
 			progressBox.x += 80;
 		}, 1200)
 		setTimeout(function() {
@@ -96,7 +95,7 @@ Play.prototype = {
 			game.add.existing(this.pizza);
 			// This pizza code is here for generation of sprite before dormitory, to hide!
 			//1 hidden diamond in right side cave
-		   
+
 			//Set some background structure
 			this.busStop = game.add.sprite(180, 1560, 'busStop');
 			this.busStop.anchor.set(0.5);
@@ -119,12 +118,12 @@ Play.prototype = {
 			//Set the protal of the stage
 			this.portal = new Portal(game, 5626, 1400, 'portal', 1, this.player, this);
 			game.add.existing(this.portal);
-			
+
 			//troll muffin to mess with player score
 			this.diamond = new Pickup(game, 5950, 1200, 'diamond', 1,
 							this.wallLayer, this.player, this, diaVal, diaGood);
 			game.add.existing(this.diamond);
-			
+
 			//blocking muffin to make player take other route
 			this.diamond = new Pickup(game, 4930, 1200, 'diamond', 1,
 							this.wallLayer, this.player, this, diaVal, diaGood);
@@ -180,26 +179,26 @@ Play.prototype = {
 			this.pizza = new Pickup(game, 710, 1341, 'pizza', 1,
 							this.wallLayer, this.player, this, pizzaVal, pizzaGood);
 			game.add.existing(this.pizza);
-			
+
 			//pizza below the first hard cave
 			this.pizza = new Pickup(game, 110, 1835, 'pizza', 1,
 							this.wallLayer, this.player, this, pizzaVal, pizzaGood);
 			game.add.existing(this.pizza);
-			
+
 			//pizza below the first hard cave
 			this.pizza = new Pickup(game, 110, 1875, 'pizza', 1,
 							this.wallLayer, this.player, this, pizzaVal, pizzaGood);
 			game.add.existing(this.pizza);
-			
+
 			 // 2 diamond in cave to deter people
 			this.diamond = new Pickup(game, 220, 1840, 'diamond', 1,
 							this.wallLayer, this.player, this, diaVal, diaGood);
 			game.add.existing(this.diamond);
-			
+
 			this.diamond = new Pickup(game, 320, 1900, 'diamond', 1,
 							this.wallLayer, this.player, this, diaVal, diaGood);
 			game.add.existing(this.diamond);
-			
+
 			// 8 coin on platform
 			for (var i = 0; i < 2; i++){
 				for (var j = 0; j < 4; j++){
@@ -232,7 +231,7 @@ Play.prototype = {
 			}
 			// Second image on reference
 			//1 diamond in dorm interior
-			
+
 			// 1 diamond on dormitory
 			this.diamond = new Pickup(game, 3450, 810, 'diamond', 1,
 								this.wallLayer, this.player, this, diaVal, diaGood);
